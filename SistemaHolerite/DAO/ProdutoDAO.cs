@@ -26,14 +26,13 @@ namespace SistemaHolerite.DAO
             {
                 new ProdutoDAO();
 
-                string sql = @"insert into tb_productor (dr,dc, resp,st,pv,pp,obs)
-                    value (@dr,@dc,@resp,@st,@pv,@pp,@obs)";
+                string sql = @"insert into tb_productor (dr,dc, id_resp,pv,pp,obs)
+                    value (@dr,@dc,@resp,@pv,@pp,@obs)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@dr", obj.DR);
                 cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.Responsavel);
-                cmd.Parameters.AddWithValue("@st", obj.Status);
+                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
                 cmd.Parameters.AddWithValue("@pv", obj.PV);
                 cmd.Parameters.AddWithValue("@pp", obj.PP);
                 cmd.Parameters.AddWithValue("@obj", obj.Obs);
@@ -42,7 +41,7 @@ namespace SistemaHolerite.DAO
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show($"O produto {obj.DR} foi salvo com sucesso");
-            }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
@@ -57,14 +56,13 @@ namespace SistemaHolerite.DAO
             try
             {
                 new ProdutoDAO();
-                string sql = @"update tb_productor (dr=@dr, dc=@dc, resp=@resp,
-                    st=@st, pv=@pv, pp=@pp, obs=@obs)";
+                string sql = @"update tb_productor (dr=@dr, dc=@dc, id_resp=@resp,
+                    pv=@pv, pp=@pp, obs=@obs)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@dr", obj.DR);
                 cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.Responsavel);
-                cmd.Parameters.AddWithValue("@st", obj.Status);
+                cmd.Parameters.AddWithValue("@resp", obj.IdRes); 
                 cmd.Parameters.AddWithValue("@pv", obj.PV);
                 cmd.Parameters.AddWithValue("@pp", obj.PP);
                 cmd.Parameters.AddWithValue("@obs", obj.Obs);
