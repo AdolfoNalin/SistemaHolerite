@@ -12,6 +12,6 @@ namespace SistemaHolerite.MODEL
         public int IdOrcamento { get; set; }
         public int IdProduto { get; set; }
         public int Qtd { get; set; }
-        public float preco { get; set; }
+        public float Price { get; set; }
     }
 }
