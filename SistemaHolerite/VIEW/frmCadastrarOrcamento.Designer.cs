@@ -55,6 +55,7 @@
             brnRemover = new Button();
             txtQtd = new TextBox();
             lblQtd = new Label();
+            btnGravar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgOrcamento).BeginInit();
             SuspendLayout();
             // 
@@ -288,11 +289,21 @@
             lblQtd.TabIndex = 25;
             lblQtd.Text = "Cód:";
             // 
+            // btnGravar
+            // 
+            btnGravar.Location = new Point(811, 351);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(86, 23);
+            btnGravar.TabIndex = 27;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
+            // 
             // frmCadastrarOrcamento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(933, 462);
+            Controls.Add(btnGravar);
             Controls.Add(txtQtd);
             Controls.Add(lblQtd);
             Controls.Add(brnRemover);
@@ -357,5 +368,6 @@
         private Button brnRemover;
         private TextBox txtQtd;
         private Label lblQtd;
+        private Button btnGravar;
     }
 }
