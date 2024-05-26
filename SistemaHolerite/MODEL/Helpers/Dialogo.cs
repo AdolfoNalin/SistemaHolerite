@@ -14,5 +14,10 @@ namespace SistemaHolerite.MODEL.Helpers
 
             return result;
         }
+
+        public static void Message(string title, string message)
+        {
+            MessageBox.Show(message, title);
+        }
     }
 }
