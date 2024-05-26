@@ -934,11 +934,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\repos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
+      "projectUniqueName": "C:\\Users\\nalin\\Desktop\\Projetos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
       "projectName": "SistemaHolerite",
-      "projectPath": "D:\\repos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
+      "projectPath": "C:\\Users\\nalin\\Desktop\\Projetos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
       "packagesPath": "C:\\Users\\nalin\\.nuget\\packages\\",
-      "outputPath": "D:\\repos\\SistemaHolerite\\SistemaHolerite\\obj\\",
+      "outputPath": "C:\\Users\\nalin\\Desktop\\Projetos\\SistemaHolerite\\SistemaHolerite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -966,6 +966,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1000,7 +1005,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

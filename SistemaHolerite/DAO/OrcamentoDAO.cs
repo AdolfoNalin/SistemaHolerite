@@ -194,5 +194,38 @@ namespace SistemaHolerite.DAO
             finally { _connection.Close(); }
         }
         #endregion
+
+        #region UltimoOrcamento
+        public static int EndOrcamento()
+        {
+            int id = 0;
+            try
+            {
+                string sql = "Select max(id) id from tb_orcamento";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
+
+                _connection.Open();
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    id = Convert.ToInt32("id");
+                }
+                else
+                {
+                    MessageBox.Show($"");
+                }
+
+                return id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
+                return 0;
+            }
+        }
+        #endregion
     }
 }

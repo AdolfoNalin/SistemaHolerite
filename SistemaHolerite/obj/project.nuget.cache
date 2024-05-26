@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "da7OwtMfB8GEi8XafOFGAx4aMz1N7RhU8tSqPfymBf/n284Ub8mfc286x2b1KKr7uVW0xIwVVndLfzG2cIflzA==",
+  "dgSpecHash": "uvuZjK25eYc=",
   "success": true,
-  "projectFilePath": "D:\\repos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
+  "projectFilePath": "C:\\Users\\nalin\\Desktop\\Projetos\\SistemaHolerite\\SistemaHolerite\\SistemaHolerite.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nalin\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\nalin\\.nuget\\packages\\correios.cep.net\\1.1.6\\correios.cep.net.1.1.6.nupkg.sha512",
