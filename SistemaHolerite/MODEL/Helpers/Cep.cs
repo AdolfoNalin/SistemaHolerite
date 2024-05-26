@@ -17,7 +17,7 @@ namespace SistemaHolerite.MODEL.Helpers
            _cep = cep;
         }
 
-        public List<string> Buscar() 
+        public List<string> Buscar(string _cep) 
         { 
             try
             {
