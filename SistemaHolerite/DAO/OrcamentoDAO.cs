@@ -215,7 +215,7 @@ namespace SistemaHolerite.DAO
                 }
                 else
                 {
-                    MessageBox.Show($"");
+                    MessageBox.Show($"Verifique a conexão com o banco de dados");
                 }
 
                 return id;
