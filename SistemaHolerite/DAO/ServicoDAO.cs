@@ -29,14 +29,13 @@ namespace SistemaHolerite.DAO
             {
                 new ServicoDAO();
 
-                string sql = @"insert into tb_servico (dr,dc, resp,st,pv,pp,obs)
-                    value (@dr,@dc,@resp,@st,@pv,@pp,@obs)";
+                string sql = @"insert into tb_servico (dr,dc, resp,pv,pp,obs)
+                    value (@dr,@dc,@resp,@pv,@pp,@obs)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@dr", obj.DR);
                 cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.Responsavel);
-                cmd.Parameters.AddWithValue("@st", obj.Status);
+                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
                 cmd.Parameters.AddWithValue("@pv", obj.PV);
                 cmd.Parameters.AddWithValue("@pp", obj.PP);
                 cmd.Parameters.AddWithValue("@obj", obj.Obs);
@@ -60,13 +59,12 @@ namespace SistemaHolerite.DAO
             try
             {
                 new ServicoDAO();
-                string sql = "update tb_servico (dr=@dr, dc=@dc, resp=@resp, st=@st, pv=@pv, pp=@pp, obs=@obs)";
+                string sql = "update tb_servico (dr=@dr, dc=@dc, resp=@resp, pv=@pv, pp=@pp, obs=@obs)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@dr", obj.DR);
                 cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.Responsavel);
-                cmd.Parameters.AddWithValue("@st", obj.Status);
+                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
                 cmd.Parameters.AddWithValue("@pv", obj.PV);
                 cmd.Parameters.AddWithValue("@pp", obj.PP);
                 cmd.Parameters.AddWithValue("@obs", obj.Obs);
