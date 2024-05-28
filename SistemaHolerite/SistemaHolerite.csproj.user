@@ -4,34 +4,34 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmCadastrarCliente.cs">
+    <Compile Update="VIEW\Insert\frmCadastrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmCadastrarFuncionario.cs">
+    <Compile Update="VIEW\Insert\frmCadastrarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmCadastrarOrcamento.cs">
+    <Compile Update="VIEW\Insert\frmCadastrarOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmCadastrarServico.cs">
+    <Compile Update="VIEW\Insert\frmCadastrarServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmCadastrarProduto.cs">
+    <Compile Update="VIEW\Insert\frmCadastrarProduto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmConsultarCliente.cs">
+    <Compile Update="VIEW\Consult\frmConsultarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmConsultarFuncionario.cs">
+    <Compile Update="VIEW\Consult\frmConsultarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmConsultarOrcamento.cs">
+    <Compile Update="VIEW\Consult\frmConsultarOrcamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmConsultarProduto.cs">
+    <Compile Update="VIEW\Consult\frmConsultarProduto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VIEW\frmConsultarServico.cs">
+    <Compile Update="VIEW\Consult\frmConsultarServico.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
