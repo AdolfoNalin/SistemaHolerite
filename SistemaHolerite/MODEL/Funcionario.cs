@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Funcionario : Cliente
+    public class Funcionario : Cliente,IUsuario
     {
-        public string Cargo { get; set; }
-        public string Senha { get; set; }
+        public string User { get; set; }
+        public string Password { get; set; }
+        public List<String> Permicoes { get; set; }
+        public float Salario { get; set; }
     }
 }

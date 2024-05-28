@@ -73,3 +73,4 @@ C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.pdb
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.genruntimeconfig.cache
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\ref\SistemaHolerite.dll
+C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.frmConsultarOrcamento.resources
