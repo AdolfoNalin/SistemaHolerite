@@ -32,8 +32,8 @@ namespace SistemaHolerite.DAO
             try
             {
                 new ClienteDAO();
-                string sql = @"insert into bdholerite.tb_cliente(name, cpf, num_phone, email, logradouro, home_num, bairro, cep, city, salario,
-                cargo) value (@name, @cpf, @num_phone, @email, @logradouro, @home_num, @bairro, @cep, @city, @salario, @cargo)";
+                string sql = @"insert into bdholerite.tb_cliente(name, cpf, num_phone, email, logradouro, home_num, bairro, cep, city) 
+                value (@name, @cpf, @num_phone, @email, @logradouro, @home_num, @bairro, @cep, @city)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
@@ -45,8 +45,6 @@ namespace SistemaHolerite.DAO
                 cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
                 cmd.Parameters.AddWithValue("@cep", obj.CEP);
                 cmd.Parameters.AddWithValue("@city", obj.City);
-                cmd.Parameters.AddWithValue("@salario", obj.Salario);
-                cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -103,7 +101,7 @@ namespace SistemaHolerite.DAO
             {
                 new ClienteDAO();
                 string sql = @"update bdholerite.tb_funcionario (name=@name, cpf=@cpf,num_phone=@num_phone, emial=@emial, 
-                logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city, salario=@salario, cargo=@cargo";
+                logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
@@ -115,9 +113,6 @@ namespace SistemaHolerite.DAO
                 cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
                 cmd.Parameters.AddWithValue("@cep", obj.CEP);
                 cmd.Parameters.AddWithValue("@city", obj.City);
-                cmd.Parameters.AddWithValue("@salario", obj.Salario);
-                cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
-                cmd.Parameters.AddWithValue("@password", obj.Senha);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();

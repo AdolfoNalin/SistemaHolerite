@@ -34,22 +34,23 @@ namespace SistemaHolerite.DAO
             try
             {
                 new FuncionarioDAO();
-                string sql = @"insert into bdholerite.tb_funcionario(name, cpf, num_phone, email, cargo, password, logradouro, home_num, bairro, cep, city, salario,
-                cargo) value (@name, @cpf, @num_phone, @email, @cargo, @password, @logradouro, @home_num, @bairro, @cep, @city, @salario, @cargo)";
+                string sql = @"insert into bdholerite.tb_funcionario(name, cpf, num_phone, email, user, password, logradouro, home_num, bairro, cep, city, salario,
+                permicoes) value (@name, @cpf, @num_phone, @email, @user, @password, @logradouro, @home_num, @bairro, @cep, @city, @salario, @permicoes, @cargo)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@cpf", obj.CPF);
                 cmd.Parameters.AddWithValue("@num_phone", obj.NumPhone);
                 cmd.Parameters.AddWithValue("@email", obj.Email);
-                cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
-                cmd.Parameters.AddWithValue("@senha", obj.Senha);
+                cmd.Parameters.AddWithValue("User", obj.User);
+                cmd.Parameters.AddWithValue("@senha", obj.Password);
                 cmd.Parameters.AddWithValue("@logradouro", obj.Logradouro);
                 cmd.Parameters.AddWithValue("@home_num", obj.HomeNum);
                 cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
                 cmd.Parameters.AddWithValue("@cep", obj.CEP);
                 cmd.Parameters.AddWithValue("@city", obj.City);
                 cmd.Parameters.AddWithValue("@salario", obj.Salario);
+                cmd.Parameters.AddWithValue("@permicoes", obj.Permicoes);
                 cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
 
                 _connection.Open();
@@ -103,7 +104,7 @@ namespace SistemaHolerite.DAO
             {
                 new FuncionarioDAO();
                 string sql = @"update bdholerite.tb_funcionario (name=@name, cpf=@cpf,num_phone=@num_phone, emial=@emial, 
-logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city, salario=@salario, cargo=@cargo, @password=password";
+logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city, salario=@salario, user=@user, cargo=@cargo, @password=password";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
@@ -116,8 +117,9 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
                 cmd.Parameters.AddWithValue("@cep", obj.CEP);
                 cmd.Parameters.AddWithValue("@city", obj.City);
                 cmd.Parameters.AddWithValue("@salario", obj.Salario);
-                cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
-                cmd.Parameters.AddWithValue("@password", obj.Senha);
+                cmd.Parameters.AddWithValue("@user", obj.User);
+                cmd.Parameters.AddWithValue("@cargo", obj.Permicoes);
+                cmd.Parameters.AddWithValue("@password", obj.Password);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
