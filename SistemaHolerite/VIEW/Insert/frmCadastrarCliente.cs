@@ -178,7 +178,7 @@ namespace SistemaHolerite.VIEW
             {
                 string cep = mtbCEP.Text;
                 Cep c = new Cep(cep);
-                List<string> p = c.Buscar();
+                List<string> p = c.Buscar(cep);
 
                 for(int i = 0; i < p.Count; i++)
                 {

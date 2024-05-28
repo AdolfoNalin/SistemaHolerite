@@ -26,9 +26,9 @@ namespace SistemaHolerite.VIEW
         {
             if (txtId.Text != String.Empty)
             {
-                cbRes.ValueMember = "id";
-                cbRes.Text = "name";
                 cbRes.DataSource = FuncionarioDAO.Consultar();
+                cbRes.ValueMember = "id";
+                cbRes.DisplayMember = "name";
             }
         }
         #endregion
@@ -40,8 +40,7 @@ namespace SistemaHolerite.VIEW
             {
                 DR = txtDR.Text,
                 DC = txtDC.Text,
-                Responsavel = cbRes.Text,
-                Status = cbStatus.Text,
+                IdRes = cbRes.TabIndex,
                 PV = float.Parse(txtPV.Text),
                 PP = float.Parse(txtPP.Text),
                 Obs = txtObs.Text
@@ -76,8 +75,7 @@ namespace SistemaHolerite.VIEW
             {
                 DR = txtDR.Text,
                 DC = txtDC.Text,
-                Responsavel = cbRes.Text,
-                Status = cbStatus.Text,
+                IdRes = cbRes.TabIndex,
                 PV = float.Parse(txtPV.Text),
                 PP = float.Parse(txtPP.Text),
                 Obs = txtObs.Text

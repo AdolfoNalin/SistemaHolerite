@@ -36,8 +36,8 @@ namespace SistemaHolerite.VIEW
                     NumPhone = mtbNumPhone.Text,
                     Email = txtEmail.Text,
                     Salario = float.Parse(txtSalario.Text),
-                    Cargo = cbCargo.Text,
-                    Senha = txtSenha.Text,
+                    // = cbCargo.Text,
+                    Password = txtSenha.Text,
                     Logradouro = txtLog.Text,
                     HomeNum = int.Parse(txtHomeNum.Text),
                     Bairro = txtBairro.Text,
@@ -60,7 +60,7 @@ namespace SistemaHolerite.VIEW
                     mtbNumPhone.Text = string.Empty;
                     txtEmail.Text = string.Empty;
                     txtSalario.Text = string.Empty;
-                    cbCargo.Text = string.Empty;
+                    //cbCargo.Text = string.Empty;
                     txtSenha.Text = string.Empty;
                     mtbCEP.Text = string.Empty;
                     txtCity.Text = string.Empty;
@@ -101,7 +101,7 @@ namespace SistemaHolerite.VIEW
                     NumPhone = mtbNumPhone.Text,
                     Email = txtEmail.Text,
                     Salario = float.Parse(txtSalario.Text),
-                    Cargo = cbCargo.Text,
+                    //Permicoes = ,
                     Logradouro = txtLog.Text,
                     HomeNum = int.Parse(txtHomeNum.Text),
                     Bairro = txtBairro.Text,
@@ -160,7 +160,7 @@ namespace SistemaHolerite.VIEW
            mtbNumPhone.Text = string.Empty;
            txtEmail.Text = string.Empty;
            txtSalario.Text = string.Empty;
-           cbCargo.Text = string.Empty;
+           //cbCargo.Text = string.Empty;
            txtSenha.Text = string.Empty;
            mtbCEP.Text = string.Empty;
            txtCity.Text = string.Empty;

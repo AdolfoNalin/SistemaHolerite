@@ -44,8 +44,6 @@
             mtbCEP = new MaskedTextBox();
             txtEmail = new TextBox();
             lblEmail = new Label();
-            cbCargo = new ComboBox();
-            lblCargo = new Label();
             lblSalario = new Label();
             txtSalario = new TextBox();
             txtCity = new TextBox();
@@ -63,6 +61,7 @@
             btnLimpar = new Button();
             txtSenha = new TextBox();
             lblSenha = new Label();
+            btnPermicoes = new Button();
             ((System.ComponentModel.ISupportInitialize)pbImg).BeginInit();
             SuspendLayout();
             // 
@@ -205,23 +204,6 @@
             lblEmail.TabIndex = 14;
             lblEmail.Text = "Email:";
             // 
-            // cbCargo
-            // 
-            cbCargo.FormattingEnabled = true;
-            cbCargo.Location = new Point(453, 101);
-            cbCargo.Name = "cbCargo";
-            cbCargo.Size = new Size(104, 23);
-            cbCargo.TabIndex = 16;
-            // 
-            // lblCargo
-            // 
-            lblCargo.AutoSize = true;
-            lblCargo.Location = new Point(408, 104);
-            lblCargo.Name = "lblCargo";
-            lblCargo.Size = new Size(42, 15);
-            lblCargo.TabIndex = 17;
-            lblCargo.Text = "Cargo:";
-            // 
             // lblSalario
             // 
             lblSalario.AutoSize = true;
@@ -363,11 +345,21 @@
             lblSenha.TabIndex = 34;
             lblSenha.Text = "Senha:";
             // 
+            // btnPermicoes
+            // 
+            btnPermicoes.Location = new Point(438, 105);
+            btnPermicoes.Name = "btnPermicoes";
+            btnPermicoes.Size = new Size(78, 22);
+            btnPermicoes.TabIndex = 36;
+            btnPermicoes.Text = "Permições";
+            btnPermicoes.UseVisualStyleBackColor = true;
+            // 
             // frmCadastrarFuncionario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnPermicoes);
             Controls.Add(txtSenha);
             Controls.Add(lblSenha);
             Controls.Add(btnLimpar);
@@ -385,8 +377,6 @@
             Controls.Add(lblCity);
             Controls.Add(txtSalario);
             Controls.Add(lblSalario);
-            Controls.Add(lblCargo);
-            Controls.Add(cbCargo);
             Controls.Add(txtEmail);
             Controls.Add(lblEmail);
             Controls.Add(lblCEP);
@@ -428,8 +418,6 @@
         private MaskedTextBox mtbCEP;
         private TextBox txtEmail;
         private Label lblEmail;
-        private ComboBox cbCargo;
-        private Label lblCargo;
         private Label lblSalario;
         private TextBox txtSalario;
         private TextBox txtCity;
@@ -447,5 +435,6 @@
         private Button btnLimpar;
         private TextBox txtSenha;
         private Label lblSenha;
+        private Button btnPermicoes;
     }
 }

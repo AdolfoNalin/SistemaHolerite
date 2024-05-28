@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblResponsavel = new Label();
-            cbRes = new ComboBox();
+            lblFornecedor = new Label();
+            cbFor = new ComboBox();
             txtId = new TextBox();
             lblId = new Label();
             txtObs = new TextBox();
@@ -38,8 +38,6 @@
             lblPV = new Label();
             txtPP = new TextBox();
             lblPP = new Label();
-            lblStatus = new Label();
-            cbStatus = new ComboBox();
             txtDC = new TextBox();
             lblDC = new Label();
             txtDR = new TextBox();
@@ -48,28 +46,36 @@
             btnDelet = new Button();
             btnEdit = new Button();
             btnSalvar = new Button();
+            dgCP = new DataGridView();
+            rbPrazo = new RadioButton();
+            rbVista = new RadioButton();
+            btnAdd = new Button();
+            btnRemover = new Button();
+            txtQtd = new TextBox();
+            lblQtd = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgCP).BeginInit();
             SuspendLayout();
             // 
-            // lblResponsavel
+            // lblFornecedor
             // 
-            lblResponsavel.AutoSize = true;
-            lblResponsavel.Location = new Point(467, 129);
-            lblResponsavel.Name = "lblResponsavel";
-            lblResponsavel.Size = new Size(75, 15);
-            lblResponsavel.TabIndex = 92;
-            lblResponsavel.Text = "Responsável:";
+            lblFornecedor.AutoSize = true;
+            lblFornecedor.Location = new Point(524, 99);
+            lblFornecedor.Name = "lblFornecedor";
+            lblFornecedor.Size = new Size(70, 15);
+            lblFornecedor.TabIndex = 92;
+            lblFornecedor.Text = "Fornecedor:";
             // 
-            // cbRes
+            // cbFor
             // 
-            cbRes.FormattingEnabled = true;
-            cbRes.Location = new Point(543, 126);
-            cbRes.Name = "cbRes";
-            cbRes.Size = new Size(136, 23);
-            cbRes.TabIndex = 91;
+            cbFor.FormattingEnabled = true;
+            cbFor.Location = new Point(600, 96);
+            cbFor.Name = "cbFor";
+            cbFor.Size = new Size(136, 23);
+            cbFor.TabIndex = 91;
             // 
             // txtId
             // 
-            txtId.Location = new Point(153, 54);
+            txtId.Location = new Point(210, 24);
             txtId.Name = "txtId";
             txtId.Size = new Size(44, 23);
             txtId.TabIndex = 90;
@@ -77,7 +83,7 @@
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(102, 58);
+            lblId.Location = new Point(159, 28);
             lblId.Name = "lblId";
             lblId.Size = new Size(49, 15);
             lblId.TabIndex = 89;
@@ -85,7 +91,7 @@
             // 
             // txtObs
             // 
-            txtObs.Location = new Point(116, 248);
+            txtObs.Location = new Point(167, 177);
             txtObs.Multiline = true;
             txtObs.Name = "txtObs";
             txtObs.Size = new Size(623, 67);
@@ -94,7 +100,7 @@
             // llbComplemento
             // 
             llbComplemento.AutoSize = true;
-            llbComplemento.Location = new Point(26, 248);
+            llbComplemento.Location = new Point(77, 177);
             llbComplemento.Name = "llbComplemento";
             llbComplemento.Size = new Size(87, 15);
             llbComplemento.TabIndex = 87;
@@ -102,7 +108,7 @@
             // 
             // txtPV
             // 
-            txtPV.Location = new Point(546, 83);
+            txtPV.Location = new Point(603, 53);
             txtPV.Name = "txtPV";
             txtPV.Size = new Size(71, 23);
             txtPV.TabIndex = 86;
@@ -110,7 +116,7 @@
             // lblPV
             // 
             lblPV.AutoSize = true;
-            lblPV.Location = new Point(468, 86);
+            lblPV.Location = new Point(525, 56);
             lblPV.Name = "lblPV";
             lblPV.Size = new Size(76, 15);
             lblPV.TabIndex = 85;
@@ -118,7 +124,7 @@
             // 
             // txtPP
             // 
-            txtPP.Location = new Point(703, 83);
+            txtPP.Location = new Point(760, 53);
             txtPP.Name = "txtPP";
             txtPP.Size = new Size(71, 23);
             txtPP.TabIndex = 84;
@@ -126,33 +132,15 @@
             // lblPP
             // 
             lblPP.AutoSize = true;
-            lblPP.Location = new Point(620, 87);
+            lblPP.Location = new Point(677, 57);
             lblPP.Name = "lblPP";
             lblPP.Size = new Size(81, 15);
             lblPP.TabIndex = 83;
             lblPP.Text = "Preço á Prazo:";
             // 
-            // lblStatus
-            // 
-            lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(500, 162);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(42, 15);
-            lblStatus.TabIndex = 82;
-            lblStatus.Text = "Status:";
-            // 
-            // cbStatus
-            // 
-            cbStatus.FormattingEnabled = true;
-            cbStatus.Items.AddRange(new object[] { "Acabamento", "Reforma", "Alicerce", "Levantamento", "Nenhuma das Alternativas" });
-            cbStatus.Location = new Point(543, 159);
-            cbStatus.Name = "cbStatus";
-            cbStatus.Size = new Size(136, 23);
-            cbStatus.TabIndex = 81;
-            // 
             // txtDC
             // 
-            txtDC.Location = new Point(153, 123);
+            txtDC.Location = new Point(210, 93);
             txtDC.Multiline = true;
             txtDC.Name = "txtDC";
             txtDC.Size = new Size(289, 56);
@@ -161,7 +149,7 @@
             // lblDC
             // 
             lblDC.AutoSize = true;
-            lblDC.Location = new Point(35, 126);
+            lblDC.Location = new Point(92, 96);
             lblDC.Name = "lblDC";
             lblDC.Size = new Size(119, 15);
             lblDC.TabIndex = 79;
@@ -169,7 +157,7 @@
             // 
             // txtDR
             // 
-            txtDR.Location = new Point(153, 83);
+            txtDR.Location = new Point(210, 53);
             txtDR.Name = "txtDR";
             txtDR.Size = new Size(289, 23);
             txtDR.TabIndex = 78;
@@ -177,7 +165,7 @@
             // lblDR
             // 
             lblDR.AutoSize = true;
-            lblDR.Location = new Point(35, 86);
+            lblDR.Location = new Point(92, 56);
             lblDR.Name = "lblDR";
             lblDR.Size = new Size(119, 15);
             lblDR.TabIndex = 77;
@@ -185,7 +173,7 @@
             // 
             // btnNew
             // 
-            btnNew.Location = new Point(569, 349);
+            btnNew.Location = new Point(652, 498);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(113, 47);
             btnNew.TabIndex = 76;
@@ -194,7 +182,7 @@
             // 
             // btnDelet
             // 
-            btnDelet.Location = new Point(414, 349);
+            btnDelet.Location = new Point(497, 498);
             btnDelet.Name = "btnDelet";
             btnDelet.Size = new Size(113, 47);
             btnDelet.TabIndex = 75;
@@ -203,7 +191,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(251, 349);
+            btnEdit.Location = new Point(334, 498);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(113, 47);
             btnEdit.TabIndex = 74;
@@ -212,7 +200,7 @@
             // 
             // btnSalvar
             // 
-            btnSalvar.Location = new Point(84, 349);
+            btnSalvar.Location = new Point(167, 498);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(113, 47);
             btnSalvar.TabIndex = 73;
@@ -220,13 +208,89 @@
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += btnSalvar_Click;
             // 
+            // dgCP
+            // 
+            dgCP.AllowUserToAddRows = false;
+            dgCP.AllowUserToDeleteRows = false;
+            dgCP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgCP.Location = new Point(136, 290);
+            dgCP.Name = "dgCP";
+            dgCP.ReadOnly = true;
+            dgCP.Size = new Size(681, 199);
+            dgCP.TabIndex = 93;
+            // 
+            // rbPrazo
+            // 
+            rbPrazo.AutoSize = true;
+            rbPrazo.Location = new Point(211, 260);
+            rbPrazo.Name = "rbPrazo";
+            rbPrazo.Size = new Size(65, 19);
+            rbPrazo.TabIndex = 94;
+            rbPrazo.TabStop = true;
+            rbPrazo.Text = "Á prazo";
+            rbPrazo.UseVisualStyleBackColor = true;
+            // 
+            // rbVista
+            // 
+            rbVista.AutoSize = true;
+            rbVista.Location = new Point(123, 260);
+            rbVista.Name = "rbVista";
+            rbVista.Size = new Size(60, 19);
+            rbVista.TabIndex = 95;
+            rbVista.TabStop = true;
+            rbVista.Text = "Á vista";
+            rbVista.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(823, 290);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(77, 25);
+            btnAdd.TabIndex = 96;
+            btnAdd.Text = "Adicionar";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnRemover
+            // 
+            btnRemover.Location = new Point(823, 321);
+            btnRemover.Name = "btnRemover";
+            btnRemover.Size = new Size(77, 25);
+            btnRemover.TabIndex = 97;
+            btnRemover.Text = "Remover";
+            btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
+            // 
+            // txtQtd
+            // 
+            txtQtd.Location = new Point(662, 126);
+            txtQtd.Name = "txtQtd";
+            txtQtd.Size = new Size(71, 23);
+            txtQtd.TabIndex = 99;
+            // 
+            // lblQtd
+            // 
+            lblQtd.AutoSize = true;
+            lblQtd.Location = new Point(585, 130);
+            lblQtd.Name = "lblQtd";
+            lblQtd.Size = new Size(72, 15);
+            lblQtd.TabIndex = 98;
+            lblQtd.Text = "Quantidade:";
+            // 
             // frmCadastrarProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lblResponsavel);
-            Controls.Add(cbRes);
+            ClientSize = new Size(1000, 571);
+            Controls.Add(txtQtd);
+            Controls.Add(lblQtd);
+            Controls.Add(btnRemover);
+            Controls.Add(btnAdd);
+            Controls.Add(rbVista);
+            Controls.Add(rbPrazo);
+            Controls.Add(dgCP);
+            Controls.Add(lblFornecedor);
+            Controls.Add(cbFor);
             Controls.Add(txtId);
             Controls.Add(lblId);
             Controls.Add(txtObs);
@@ -235,8 +299,6 @@
             Controls.Add(lblPV);
             Controls.Add(txtPP);
             Controls.Add(lblPP);
-            Controls.Add(lblStatus);
-            Controls.Add(cbStatus);
             Controls.Add(txtDC);
             Controls.Add(lblDC);
             Controls.Add(txtDR);
@@ -247,14 +309,16 @@
             Controls.Add(btnSalvar);
             Name = "frmCadastrarProduto";
             Text = "Cadastrar Produto";
+            Load += frmCadastrarProduto_Load;
+            ((System.ComponentModel.ISupportInitialize)dgCP).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblResponsavel;
-        private ComboBox cbRes;
+        private Label lblFornecedor;
+        private ComboBox cbFor;
         private TextBox txtId;
         private Label lblId;
         private TextBox txtObs;
@@ -263,8 +327,6 @@
         private Label lblPV;
         private TextBox txtPP;
         private Label lblPP;
-        private Label lblStatus;
-        private ComboBox cbStatus;
         private TextBox txtDC;
         private Label lblDC;
         private TextBox txtDR;
@@ -273,5 +335,12 @@
         private Button btnDelet;
         private Button btnEdit;
         private Button btnSalvar;
+        private DataGridView dgCP;
+        private RadioButton rbPrazo;
+        private RadioButton rbVista;
+        private Button btnAdd;
+        private Button btnRemover;
+        private TextBox txtQtd;
+        private Label lblQtd;
     }
 }
