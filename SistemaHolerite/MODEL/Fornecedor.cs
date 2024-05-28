@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Produto : Servico
+    public class Fornecedor : Cliente
     {
-        public int Qtd { get; set; }
     }
 }
