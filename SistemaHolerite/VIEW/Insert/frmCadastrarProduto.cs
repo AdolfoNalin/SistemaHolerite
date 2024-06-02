@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace SistemaHolerite.VIEW
 {
     public partial class frmCadastrarProduto : Form
     {
-        
+
 
         public frmCadastrarProduto()
         {
@@ -80,7 +81,7 @@ namespace SistemaHolerite.VIEW
             cbFor.ValueMember = "id";
             cbFor.DisplayMember = "name";
 
-            dgCP.Columns.Add("dr","Descrição Resumida");
+            dgCP.Columns.Add("dr", "Descrição Resumida");
             dgCP.Columns.Add("dc", "Descrição Completa");
             dgCP.Columns.Add("pv", "Preço á Vista");
             dgCP.Columns.Add("pp", "Preço á Prazo");
@@ -106,7 +107,7 @@ namespace SistemaHolerite.VIEW
                     obj.Qtd = int.Parse(txtQtd.Text);
                     obj.Obs = txtObs.Text;
 
-                    dgCP.Rows.Add(obj.DC,obj.DR, obj.PV, obj.PP, obj.Qtd, obj.Obs);
+                    dgCP.Rows.Add(obj.DC, obj.DR, obj.PV, obj.PP, obj.Qtd, obj.Obs);
 
                     txtId.Text = string.Empty;
                     txtDC.Text = string.Empty;
@@ -144,7 +145,7 @@ namespace SistemaHolerite.VIEW
         #region btnRemover
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            if(dgCP.DataSource != null)
+            if (dgCP.Rows.Count > 0)
             {
                 int index = dgCP.CurrentRow.Index;
                 dgCP.Rows.RemoveAt(index);
@@ -152,6 +153,36 @@ namespace SistemaHolerite.VIEW
             else
             {
                 Dialogo.Message("ATENÇÃO", "A tabela não possui nenhum produto!");
+            }
+        }
+        #endregion
+
+        #region btnDelete
+        private void btnDelet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProdutoDAO.Delete(int.Parse(txtId.Text));
+            }
+            catch (Exception ex)
+            {
+                {
+                    Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o cominho para {ex.StackTrace}");
+                }
+
+            }
+        }
+        #endregion
+
+        #region
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                new Cleared().limpar(this);
+            }catch (Exception ex)
+            {
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
             }
         }
         #endregion

@@ -179,6 +179,7 @@
             btnNew.TabIndex = 76;
             btnNew.Text = "Novo";
             btnNew.UseVisualStyleBackColor = true;
+            btnNew.Click += btnNew_Click;
             // 
             // btnDelet
             // 
@@ -188,6 +189,7 @@
             btnDelet.TabIndex = 75;
             btnDelet.Text = "Deletar";
             btnDelet.UseVisualStyleBackColor = true;
+            btnDelet.Click += btnDelet_Click;
             // 
             // btnEdit
             // 
