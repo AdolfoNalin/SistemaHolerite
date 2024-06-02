@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using SistemaHolerite.Connection;
 using SistemaHolerite.MODEL;
+using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -241,6 +242,44 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
             {
                 _connection.Open();
             }
+        }
+        #endregion
+
+        #region Login
+        public static bool Login(string username, string password)
+        {
+            try
+            {
+                string sql = "select * from tb_funcionario where name = @name and password = @password";
+                
+                MySqlCommand cmd = new MySqlCommand(sql,_connection);
+                cmd.Parameters.AddWithValue("@name", username);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    Funcionario obj = new Funcionario()
+                    {
+                        User = dr.GetString("name"),
+                        Password = dr.GetString("password")
+                    };
+                    return true;
+                }
+                else
+                {
+                    Dialogo.Message("ATENÇÃO", "Usuário não itendificado, virifique se os dados estão certos!");
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Dialogo.Message("ATENÇÃO", $"");
+                return false;
+
+            }
+            finally { _connection.Close(); }
         }
         #endregion
     }
