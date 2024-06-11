@@ -53,6 +53,8 @@
             btnRemover = new Button();
             txtQtd = new TextBox();
             lblQtd = new Label();
+            lblCA = new Label();
+            maskedTextBox1 = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dgCP).BeginInit();
             SuspendLayout();
             // 
@@ -214,6 +216,7 @@
             // 
             dgCP.AllowUserToAddRows = false;
             dgCP.AllowUserToDeleteRows = false;
+            dgCP.BackgroundColor = SystemColors.ActiveCaption;
             dgCP.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgCP.Location = new Point(136, 290);
             dgCP.Name = "dgCP";
@@ -224,7 +227,7 @@
             // rbPrazo
             // 
             rbPrazo.AutoSize = true;
-            rbPrazo.Location = new Point(211, 260);
+            rbPrazo.Location = new Point(225, 265);
             rbPrazo.Name = "rbPrazo";
             rbPrazo.Size = new Size(65, 19);
             rbPrazo.TabIndex = 94;
@@ -235,7 +238,7 @@
             // rbVista
             // 
             rbVista.AutoSize = true;
-            rbVista.Location = new Point(123, 260);
+            rbVista.Location = new Point(137, 265);
             rbVista.Name = "rbVista";
             rbVista.Size = new Size(60, 19);
             rbVista.TabIndex = 95;
@@ -279,11 +282,30 @@
             lblQtd.TabIndex = 98;
             lblQtd.Text = "Quantidade:";
             // 
+            // lblCA
+            // 
+            lblCA.AutoSize = true;
+            lblCA.Location = new Point(746, 126);
+            lblCA.Name = "lblCA";
+            lblCA.Size = new Size(26, 15);
+            lblCA.TabIndex = 100;
+            lblCA.Text = "CA:";
+            // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(772, 121);
+            maskedTextBox1.Mask = "99.999";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(34, 23);
+            maskedTextBox1.TabIndex = 101;
+            // 
             // frmCadastrarProduto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 571);
+            Controls.Add(maskedTextBox1);
+            Controls.Add(lblCA);
             Controls.Add(txtQtd);
             Controls.Add(lblQtd);
             Controls.Add(btnRemover);
@@ -344,5 +366,7 @@
         private Button btnRemover;
         private TextBox txtQtd;
         private Label lblQtd;
+        private Label lblCA;
+        private MaskedTextBox maskedTextBox1;
     }
 }
