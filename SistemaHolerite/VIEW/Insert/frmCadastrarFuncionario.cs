@@ -29,7 +29,7 @@ namespace SistemaHolerite.VIEW
         {
             try
             {
-                Funcionario obj = new Funcionario()
+                Employee obj = new Employee()
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,
@@ -94,7 +94,7 @@ namespace SistemaHolerite.VIEW
         {
             try
             {
-                Funcionario obj = new Funcionario()
+                Employee obj = new Employee()
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,

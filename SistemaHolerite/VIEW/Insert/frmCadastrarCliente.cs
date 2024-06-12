@@ -25,7 +25,7 @@ namespace SistemaHolerite.VIEW
         {
             try
             {
-                Cliente obj = new Cliente()
+                Client obj = new Client()
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,
@@ -79,7 +79,7 @@ namespace SistemaHolerite.VIEW
         {
             try
             {
-                Cliente obj = new Cliente()
+                Client obj = new Client()
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,

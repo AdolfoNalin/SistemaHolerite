@@ -35,7 +35,7 @@ namespace SistemaHolerite.VIEW
                 {
                     for (int i = 0; i < dgCP.Rows.Count; i++)
                     {
-                        Produto produto = new Produto()
+                        Product produto = new Product()
                         {
                             DR = dgCP.CurrentRow.Cells[0].Value.ToString(),
                             DC = dgCP.CurrentRow.Cells[1].Value.ToString(),
@@ -97,7 +97,7 @@ namespace SistemaHolerite.VIEW
             {
                 if (rbPrazo.Checked || rbVista.Checked)
                 {
-                    Produto obj = new Produto();
+                    Product obj = new Product();
 
                     obj.DR = txtDR.Text;
                     obj.DC = txtDC.Text;
