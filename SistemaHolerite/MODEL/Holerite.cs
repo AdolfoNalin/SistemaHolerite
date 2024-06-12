@@ -8,12 +8,13 @@ namespace SistemaHolerite.MODEL
 {
     public class Holerite
     {
-        public float SalBase { get; set; }
+        public int Cod { get; set; }
+        public float SalBasic { get; set; }
         public float SalContrINNS { get; set; }
-        public float BaseCalcFGTS { get; set; }
-        public float FGTSMes { get; set; }
-        public float BaseCalcIRRF { get; set; }
-        public int FaixaIRRF { get; set; }
+        public float BasicCalcFGTS { get; set; }
+        public float FGTSMonth{ get; set; }
+        public float BasicCalcIRRF { get; set; }
+        public int RangeIRRF { get; set; }
 
     }
 }

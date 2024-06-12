@@ -8,9 +8,9 @@ namespace SistemaHolerite.MODEL
 {
     public interface IUsuario
     {
-        public string User { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
-        public List<String> Permicoes { get; set; }
-        public float Salario { get; set; }
+        public List<String> Permissions { get; set; }
+        public float Wage { get; set; }
     }
 }

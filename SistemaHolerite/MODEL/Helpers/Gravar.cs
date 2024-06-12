@@ -21,7 +21,7 @@ namespace SistemaHolerite.MODEL.Helpers
         {
             try
             {
-                Orcamento obj = new Orcamento()
+                Budget obj = new Budget()
                 {
                     IdCliente = idCliente,
                     IdFun = idFuncionario,

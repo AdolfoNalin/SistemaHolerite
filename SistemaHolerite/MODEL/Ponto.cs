@@ -8,6 +8,7 @@ namespace SistemaHolerite.MODEL
 {
     public class Ponto
     {
+        public int Cod { get; set; }
         public Empregado Empregado { get; set; }
         public Empresa Empresa { get; set; }
     }

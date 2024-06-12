@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Fornecedor : Cliente
+    public class Supplier : Client
     {
     }
 }

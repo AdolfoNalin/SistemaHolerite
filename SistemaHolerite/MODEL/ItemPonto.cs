@@ -9,13 +9,13 @@ namespace SistemaHolerite.MODEL
 {
     public class ItemPonto
     {
-        public int CodPonto { get; set; }
-        public DateTime Data { get; set; }
-        public Time HoraEntrada { get; set; }
-        public Time SaidaAlmoco { get; set; }
-        public Time EntradaAlmoco { get; set; }
-        public Time Saida { get; set; }
-        public Time EntradaExtra { get; set; }
-        public Time SaidaExtra { get; set; }
+        public int CodPoint { get; set; }
+        public DateTime Date { get; set; }
+        public Time EntryTime { get; set; }
+        public Time LunchDeparture { get; set; }
+        public Time LunchEntrance { get; set; }
+        public Time Exit { get; set; }
+        public Time ExtraEntry { get; set; }
+        public Time ExtraOutput { get; set; }
     }
 }

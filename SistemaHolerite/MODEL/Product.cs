@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Produto : Servico
+    public class Product : Servico
     {
-        public int Qtd { get; set; }
+        public int Amount { get; set; }
     }
 }

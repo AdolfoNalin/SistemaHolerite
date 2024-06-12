@@ -9,7 +9,7 @@ namespace SistemaHolerite.MODEL
     public class Servico
     {
 
-        public int Id { get; set; }
+        public int Cod { get; set; }
         public string DR { get; set; }
         public string DC { get; set; }
         public int IdRes { get; set; }

@@ -8,10 +8,11 @@ namespace SistemaHolerite.MODEL
 {
     public class ItemOrcamento
     {
-        public int Id { get; set; }
-        public int IdOrcamento { get; set; }
-        public int IdProduto { get; set; }
-        public int Qtd { get; set; }
+        public int Cod { get; set; }
+        public int CodBudget{ get; set; }
+        public int CodProduct{ get; set; }
         public float Price { get; set; }
+        public int Amount{ get; set; }
+        public float Subtotal { get; set; }
     }
 }

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Cliente 
+    public class Client 
     {
-        public int Id { get; set; }
+        public int Cod { get; set; }
         public string Name { get; set; }
         public string CPF { get; set; }
         public string NumPhone { get; set; }
         public string Email { get; set; }
         public string CEP { get; set; }
         public string City { get; set; }
-        public string Bairro { get; set; }
-        public string Logradouro { get; set; }
-        public int HomeNum { get; set; }
-        public string Complemento { get; set; }
+        public string Neighbordhood { get; set; }
+        public string Street { get; set; }
+        public int NumHome { get; set; }
+        public string Complement { get; set; }
         public byte Img { get; set; }
     }
 }
