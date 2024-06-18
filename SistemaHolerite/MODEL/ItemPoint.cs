@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class ItemPonto
+    public class ItemPoint
     {
         public int CodPoint { get; set; }
         public DateTime Date { get; set; }

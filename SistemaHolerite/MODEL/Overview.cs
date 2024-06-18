@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class ResumoGeral
+    public class Overview
     {
         public int CodPonto { get; set; }
         public float Horas { get; set; }

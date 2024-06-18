@@ -23,7 +23,7 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
-        public static void InsetIndo(Ponto obj)
+        public static void InsetIndo(MODEL.Point obj)
         {
             try
             {
@@ -104,11 +104,11 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region GetData
-        public static Ponto GetData(DateTime data)
+        public static MODEL.Point GetData(DateTime data)
         {
             try
             {
-                Ponto obj = new Ponto();
+                MODEL.Point obj = new MODEL.Point();
                 string sql = "SELECT * FROM tb_ponto WHERE data between @data";
                 MySqlCommand cmd = new MySqlCommand( sql, _connection);
                 cmd.Parameters.AddWithValue("@data", data);

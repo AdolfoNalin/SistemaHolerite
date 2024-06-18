@@ -23,7 +23,7 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
-        public static void Insert(Servico obj)
+        public static void Insert(Severce obj)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region UpDate
-        public static void UpDate(Servico obj)
+        public static void UpDate(Severce obj)
         {
             try
             {
@@ -162,12 +162,12 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region BuscarId
-        public static Servico Buscar(int id)
+        public static Severce Buscar(int id)
         {
             try
             {
                 new SeverceDAO();
-                Servico obj = new Servico();
+                Severce obj = new Severce();
 
                 string sql = "select * from tb_prodoctor id where @id";
 

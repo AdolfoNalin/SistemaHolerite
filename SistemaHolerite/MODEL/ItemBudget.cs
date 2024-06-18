@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class ItemOrcamento
+    public class ItemBudget
     {
         public int Cod { get; set; }
         public int CodBudget{ get; set; }

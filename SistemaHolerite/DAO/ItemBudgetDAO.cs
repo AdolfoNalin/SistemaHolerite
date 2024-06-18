@@ -21,7 +21,7 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
-        public static void Insert(ItemOrcamento obj)
+        public static void Insert(ItemBudget obj)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region UpData
-        public static void UpData(ItemOrcamento obj)
+        public static void UpData(ItemBudget obj)
         {
             try
             {

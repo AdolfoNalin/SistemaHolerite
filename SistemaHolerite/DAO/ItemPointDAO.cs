@@ -20,7 +20,7 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
-        public static void Insert(ItemPonto obj)
+        public static void Insert(ItemPoint obj)
         {
             try
             {
