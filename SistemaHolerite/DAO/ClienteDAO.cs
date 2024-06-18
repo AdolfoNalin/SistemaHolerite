@@ -27,7 +27,7 @@ namespace SistemaHolerite.DAO
         /// <param name="obj"></param>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static void Insert(Cliente obj)
+        public static void Insert(Client obj)
         {
             try
             {

@@ -10,43 +10,39 @@ namespace SistemaHolerite.MODEL.Helpers
 {
     public class Gravar
     {
-        
-        public static void GravarHolerite()
-        {
 
-        }
-
-        public static void GravarOrcamento(int idCliente, int idFuncionario, 
-            int dp, float subtotal, float total, DataGridView dg)
+        #region Insert
+        public static void InsertBudget(int codClient, int codEmp, 
+            string payment, float subtotal, float total, DataGridView dg)
         {
             try
             {
                 Budget obj = new Budget()
                 {
-                    IdCliente = idCliente,
-                    IdFun = idFuncionario,
-                    DP = dp,
+                    CodClient = codClient,
+                    CodEmp = codEmp,
+                    Payment = payment,
                     Subtotal = subtotal,
                     Total = total
                 };
 
-                OrcamentoDAO.Indo(obj);
+                BudgetDAO.Indo(obj);
 
-                int id = OrcamentoDAO.EndOrcamento();
+                int cod = BudgetDAO.EndOrcamento();
 
-                if (id != 0)
+                if (cod != 0)
                 {
                     foreach (DataGridViewRow OR in dg.Rows)
                     {
                         ItemOrcamento io = new ItemOrcamento()
                         {
-                            IdOrcamento = id,
-                            IdProduto = int.Parse(OR.Cells[1].Value.ToString()),
-                            Qtd = int.Parse(OR.Cells[2].Value.ToString()),
+                            CodBudget = cod,
+                            CodProduct = int.Parse(OR.Cells[1].Value.ToString()),
+                            Amount = int.Parse(OR.Cells[2].Value.ToString()),
                             Price = float.Parse(OR.Cells[3].Value.ToString())
                         };
 
-                        ItemOrcamentoDAO.Insert(io);
+                        ItemBudgetDAO.Insert(io);
                     }
                 }
             }
@@ -55,8 +51,10 @@ namespace SistemaHolerite.MODEL.Helpers
                 MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
             }
         }
+        #endregion
 
-        public static void GravarHolerite(int idCliente, int idFuncionario,
+        #region InsertHolerite
+        public static void InsertHolerite(int idCliente, int idFuncionario,
             int dp, float subtotal, float total, DataGridView dg)
         {
             try
@@ -68,5 +66,6 @@ namespace SistemaHolerite.MODEL.Helpers
                 MessageBox.Show($"Aconteceu um errodo {ex.Message} com o caminho para {ex.StackTrace}");
             }
         }
+        #endregion
     }
 }
