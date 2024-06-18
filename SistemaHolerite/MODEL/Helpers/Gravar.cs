@@ -34,7 +34,7 @@ namespace SistemaHolerite.MODEL.Helpers
                 {
                     foreach (DataGridViewRow OR in dg.Rows)
                     {
-                        ItemOrcamento io = new ItemOrcamento()
+                        ItemBudget io = new ItemBudget()
                         {
                             CodBudget = cod,
                             CodProduct = int.Parse(OR.Cells[1].Value.ToString()),

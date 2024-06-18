@@ -21,7 +21,7 @@ namespace SistemaHolerite.VIEW
         #region Load
         private void frmConsultarServico_Load(object sender, EventArgs e)
         {
-            dgServico.DataSource = ServicoDAO.Consult();
+            dgServico.DataSource = SeverceDAO.Consult();
         }
         #endregion
 
@@ -30,14 +30,14 @@ namespace SistemaHolerite.VIEW
         {
             string name = txtPesquisa.Text;
 
-            dgServico.DataSource = ServicoDAO.Consult(name);
+            dgServico.DataSource = SeverceDAO.Consult(name);
         }
         #endregion
 
         #region btnPesquisar
         private void btnPesquisa_Click(object sender, EventArgs e)
         {
-            dgServico.DataSource = ServicoDAO.Buscar(txtPesquisa.Text);
+            dgServico.DataSource = SeverceDAO.Buscar(txtPesquisa.Text);
         }
         #endregion
     }

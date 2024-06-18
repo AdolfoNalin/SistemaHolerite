@@ -45,7 +45,7 @@ namespace SistemaHolerite.VIEW
                             Obs = txtObs.Text
                         };
 
-                        ProdutoDAO.Insert(produto);
+                        ProductDAO.Insert(produto);
                     }
 
                     DialogResult resp = Dialogo.DialogYesNo("ATENÇÃO", "Deseja cadastrar outro produto?");
@@ -162,7 +162,7 @@ namespace SistemaHolerite.VIEW
         {
             try
             {
-                ProdutoDAO.Delete(int.Parse(txtId.Text));
+                ProductDAO.Delete(int.Parse(txtId.Text));
             }
             catch (Exception ex)
             {

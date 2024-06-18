@@ -36,7 +36,7 @@ namespace SistemaHolerite.VIEW
         #region Salve
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Servico ser = new Servico()
+            Severce ser = new Severce()
             {
                 DR = txtDR.Text,
                 DC = txtDC.Text,
@@ -46,7 +46,7 @@ namespace SistemaHolerite.VIEW
                 Obs = txtObs.Text
             };
 
-            ServicoDAO.Insert(ser);
+            SeverceDAO.Insert(ser);
 
             DialogResult resp = Dialogo.DialogYesNo("ATENÇÃO", "Deseja cadastrar outro Produto?");
 
@@ -71,7 +71,7 @@ namespace SistemaHolerite.VIEW
         #region Update
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            Servico ser = new Servico()
+            Severce ser = new Severce()
             {
                 DR = txtDR.Text,
                 DC = txtDC.Text,
@@ -81,7 +81,7 @@ namespace SistemaHolerite.VIEW
                 Obs = txtObs.Text
             };
 
-            ServicoDAO.UpDate(ser);
+            SeverceDAO.UpDate(ser);
         }
         #endregion
 
@@ -92,7 +92,7 @@ namespace SistemaHolerite.VIEW
             {
                 int id = int.Parse(txtId.Text);
 
-                ServicoDAO.Delete(id);
+                SeverceDAO.Delete(id);
             }
             catch (Exception ex)
             {

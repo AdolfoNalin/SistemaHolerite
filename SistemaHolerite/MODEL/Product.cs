@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.MODEL
 {
-    public class Product : Servico
+    public class Product : Severce
     {
         public int Amount { get; set; }
     }

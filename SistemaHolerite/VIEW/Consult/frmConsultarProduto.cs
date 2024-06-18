@@ -21,7 +21,7 @@ namespace SistemaHolerite.VIEW
         #region Load 
         private void frmConsultarProduto_Load(object sender, EventArgs e)
         {
-            dgProduto.DataSource = ProdutoDAO.Consult();
+            dgProduto.DataSource = ProductDAO.Consult();
         }
         #endregion
 
@@ -30,7 +30,7 @@ namespace SistemaHolerite.VIEW
         {
             string name = txtPesquisar.Text;
 
-            dgProduto.DataSource = ProdutoDAO.Consult(name);
+            dgProduto.DataSource = ProductDAO.Consult(name);
 
         }
         #endregion
@@ -40,7 +40,7 @@ namespace SistemaHolerite.VIEW
         {
             string name = txtPesquisar.Text;
 
-            dgProduto.DataSource = ProdutoDAO.Buscar(name);
+            dgProduto.DataSource = ProductDAO.Buscar(name);
         }
         #endregion
     }

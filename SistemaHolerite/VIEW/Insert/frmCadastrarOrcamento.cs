@@ -75,7 +75,7 @@ namespace SistemaHolerite.VIEW
             if(e.KeyChar == 13)
             {
                 int id = int.Parse(txtId.Text);
-                Servico obj = ServicoDAO.Buscar(id);
+                Severce obj = SeverceDAO.Buscar(id);
 
                 txtDR.Text = obj.DR;
                 txtVV.Text = obj.PV.ToString();

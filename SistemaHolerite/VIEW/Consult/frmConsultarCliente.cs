@@ -21,7 +21,7 @@ namespace SistemaHolerite.VIEW
         #region Load
         private void frmConsultarCliente_Load(object sender, EventArgs e)
         {
-            dgCliente.DataSource = ClienteDAO.Consult();
+            dgCliente.DataSource = ClientDAO.Consult();
         }
         #endregion
 
@@ -29,7 +29,7 @@ namespace SistemaHolerite.VIEW
         private void txtPesquisar_KeyPress(object sender, KeyPressEventArgs e)
         {
             string name = txtPesquisar.Text;
-            dgCliente.DataSource = ClienteDAO.Consult(name);
+            dgCliente.DataSource = ClientDAO.Consult(name);
         }
         #endregion
 
@@ -37,7 +37,7 @@ namespace SistemaHolerite.VIEW
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string name = txtPesquisar.Text;
-            dgCliente.DataSource = ClienteDAO.Buscar(name);
+            dgCliente.DataSource = ClientDAO.Buscar(name);
         }
         #endregion
     }

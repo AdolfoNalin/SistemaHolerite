@@ -41,7 +41,7 @@ namespace SistemaHolerite.VIEW
 
                 };
 
-                ClienteDAO.Insert(obj);
+                ClientDAO.Insert(obj);
 
                 DialogResult resp = Dialogo.DialogYesNo("ATENÇÃO", "Deseja cadastrar outro cliente?");
 
@@ -95,7 +95,7 @@ namespace SistemaHolerite.VIEW
 
                 };
 
-                ClienteDAO.UpDate(obj);
+                ClientDAO.UpDate(obj);
 
                 DialogResult resp = Dialogo.DialogYesNo("ATENÇÃO", "Deseja atualizar outro cliente?");
 
@@ -124,7 +124,7 @@ namespace SistemaHolerite.VIEW
             {
                 int id = int.Parse(txtId.Text);
 
-                ClienteDAO.Delete(id);
+                ClientDAO.Delete(id);
 
                 DialogResult resp = Dialogo.DialogYesNo("ATENÇÃO", "Deseja Deletar outro Cliente?");
 

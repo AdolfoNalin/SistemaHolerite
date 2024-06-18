@@ -27,7 +27,7 @@ namespace SistemaHolerite.VIEW
         private void frmConsultarOrcamento_Load(object sender, EventArgs e)
         {
             txtPesquisar.Focus();
-            dgOrcamento.DataSource = OrcamentoDAO.Consult();
+            dgOrcamento.DataSource = BudgetDAO.Consult();
         }
         #endregion
 
@@ -43,7 +43,7 @@ namespace SistemaHolerite.VIEW
 
             if (!string.IsNullOrEmpty(name))
             {
-                dgOrcamento.DataSource = OrcamentoDAO.Consult(name);
+                dgOrcamento.DataSource = BudgetDAO.Consult(name);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace SistemaHolerite.VIEW
                 string name = txtPesquisar.Text;
                 if (!string.IsNullOrEmpty(name))
                 {
-                    dgOrcamento.DataSource = OrcamentoDAO.Buscar(name);
+                    dgOrcamento.DataSource = BudgetDAO.Buscar(name);
                 }
                 else
                 {
