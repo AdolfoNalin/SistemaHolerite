@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using SistemaHolerite.Connection;
 using SistemaHolerite.MODEL;
+using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,23 +33,25 @@ namespace SistemaHolerite.DAO
             try
             {
                 new ClientDAO();
-                string sql = @"insert into bdholerite.tb_cliente(name, cpf, num_phone, email, logradouro, home_num, bairro, cep, city) 
-                value (@name, @cpf, @num_phone, @email, @logradouro, @home_num, @bairro, @cep, @city)";
+                string sql = @"ISERT INDO client(name, cpf, email, phone_number, telephone_number, state, city, neighborhood, street ,home_number, cep) 
+                VALUES(@name, @cpf, @email, @phone_number, @telephone_number, @state, @city, @neighborhood, @streete, @cep, @city)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@cpf", obj.CPF);
-                cmd.Parameters.AddWithValue("@num_phone", obj.NumPhone);
                 cmd.Parameters.AddWithValue("@email", obj.Email);
-                cmd.Parameters.AddWithValue("@logradouro", obj.Logradouro);
-                cmd.Parameters.AddWithValue("@home_num", obj.HomeNum);
-                cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
-                cmd.Parameters.AddWithValue("@cep", obj.CEP);
+                cmd.Parameters.AddWithValue("@phone_number", obj.PhoneNumber);
+                cmd.Parameters.AddWithValue("@telefone_number", obj.TelephoneNumber);
+                cmd.Parameters.AddWithValue("@state", obj.State);
                 cmd.Parameters.AddWithValue("@city", obj.City);
+                cmd.Parameters.AddWithValue("@neighborhood", obj.Neighbordhood);
+                cmd.Parameters.AddWithValue("@street", obj.Street);
+                cmd.Parameters.AddWithValue("@home_number", obj.HomeNumber);
+                cmd.Parameters.AddWithValue("@cep", obj.CEP);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O funcionário {obj.Name} foi cadastrado");
+                Dialogo.Message("SUCESSO!",$"O cliente {obj.Name} foi cadastrado");
 
             }
             catch (Exception ex)
@@ -65,26 +68,26 @@ namespace SistemaHolerite.DAO
 
         #region Delete
         /// <summary>
-        /// Deleta o cliente
+        /// Deleta o cliente do banco de dados
         /// </summary>
-        /// <param name="id">Id do cliente</param>
-        public static void Delete(int id)
+        /// <param name="cod">Código do cliente</param>
+        public static void Delete(int cod)
         {
             try
             {
                 new ClientDAO();
-                string sql = "delete from tb_cliente where id = @id";
+                string sql = "DELETE FROM client WHERE cod = @cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod", cod);
 
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("O Cliente foi deletado");
+                Dialogo.Message("SUCESSO!","O Cliente foi deletado");
 
             }catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO",$"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
             }
             finally { _connection.Close(); }
         }
@@ -92,35 +95,38 @@ namespace SistemaHolerite.DAO
 
         #region Update
         /// <summary>
-        /// UpDate do Cliente
+        /// Atualiza os dados do cliente do banco de dados
         /// </summary>
         /// <param name="obj"></param>
-        public static void UpDate(Cliente obj)
+        public static void UpDate(Client obj)
         {
             try
             {
                 new ClientDAO();
-                string sql = @"update bdholerite.tb_funcionario (name=@name, cpf=@cpf,num_phone=@num_phone, emial=@emial, 
-                logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city";
+                string sql = @"UPDATE client
+                (name=@name, cpf=@cpf, emial=@emial, phone_number=@phone_number, telephone_number=@telephone_number, 
+                state=@state, city=@city, neighborhood=@neighborhood, street=@street, home_number, cep=@cep";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@cpf", obj.CPF);
-                cmd.Parameters.AddWithValue("@num_phone", obj.NumPhone);
                 cmd.Parameters.AddWithValue("@email", obj.Email);
-                cmd.Parameters.AddWithValue("@logradouro", obj.Logradouro);
-                cmd.Parameters.AddWithValue("@home_num", obj.HomeNum);
-                cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
-                cmd.Parameters.AddWithValue("@cep", obj.CEP);
+                cmd.Parameters.AddWithValue("@phone_number", obj.PhoneNumber);
+                cmd.Parameters.AddWithValue("@telefone_number", obj.TelephoneNumber);
+                cmd.Parameters.AddWithValue("@state", obj.State);
                 cmd.Parameters.AddWithValue("@city", obj.City);
+                cmd.Parameters.AddWithValue("@neighborhood", obj.Neighbordhood);
+                cmd.Parameters.AddWithValue("@street", obj.Street);
+                cmd.Parameters.AddWithValue("@home_number", obj.HomeNumber);
+                cmd.Parameters.AddWithValue("@cep", obj.CEP);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O funcionário {obj.Name} foi cadastrado");
+                Dialogo.Message("SUCESSO!",$"O funcionário {obj.Name} foi cadastrado");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");            
+                Dialogo.Message("ATENÇÃO",$"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");            
             }
             finally { _connection.Close(); }
         }
@@ -138,7 +144,7 @@ namespace SistemaHolerite.DAO
                 new ClientDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_client";
+                string sql = "SELECT * FROM client";
 
                 _connection.Open();
 
@@ -158,14 +164,20 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region ConsultName
+        /// <summary>
+        /// Consulta os clientes pelo nome usanod o evento keypress
+        /// </summary>
+        /// <param name="name">Nome do cliente</param>
+        /// <returns></returns>
         public static DataTable Consult(string name)
         {
             try
             {
+                name = "%" + name + "%";
                 new ClientDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_client name like @name";
+                string sql = "SELECT * FROM client name LIKE @name";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", name);
@@ -195,7 +207,7 @@ namespace SistemaHolerite.DAO
                 new ClientDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_client name where @name";
+                string sql = "SELECT * FROM client name WHERE @name";
 
                 MySqlCommand cmd = new MySqlCommand(sql,_connection);
                 cmd.Parameters.AddWithValue("@name", name);

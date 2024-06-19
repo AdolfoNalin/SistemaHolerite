@@ -11,14 +11,15 @@ namespace SistemaHolerite.MODEL
         public int Cod { get; set; }
         public string Name { get; set; }
         public string CPF { get; set; }
-        public string NumPhone { get; set; }
         public string Email { get; set; }
+        public string TelephoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string CEP { get; set; }
+        public string State { get; set; }
         public string City { get; set; }
         public string Neighbordhood { get; set; }
         public string Street { get; set; }
-        public int NumHome { get; set; }
+        public int HomeNumber { get; set; }
         public string Complement { get; set; }
-        public byte Img { get; set; }
     }
 }
