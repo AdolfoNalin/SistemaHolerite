@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace SistemaHolerite.DAO
 {
-    public class FuncionarioDAO 
+    public class EmployeeDAO 
     {
         private static MySqlConnection _connection;
 
-        public FuncionarioDAO()
+        public EmployeeDAO()
         {
             _connection = new ConnectionFactory().GetConnection();
         }
@@ -30,33 +30,35 @@ namespace SistemaHolerite.DAO
         /// <param name="obj">Parametro Funcionario</param>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static void Insert(Funcionario obj)
+        public static void Insert(Employee obj)
         {
             try
             {
-                new FuncionarioDAO();
-                string sql = @"insert into bdholerite.tb_funcionario(name, cpf, num_phone, email, user, password, logradouro, home_num, bairro, cep, city, salario,
-                permicoes) value (@name, @cpf, @num_phone, @email, @user, @password, @logradouro, @home_num, @bairro, @cep, @city, @salario, @permicoes, @cargo)";
+                new EmployeeDAO();
+                string sql = @"INSERT INDO user_employee 
+                (name, cpf, email, phone_number, telephone_number, user_name, password, state, city, neighborhood, street, home_number, cep, wage, permissions, function) 
+                VALUES(@name, @cpf, @email, @phone_number, @telephone_number, @user_name, @password, @state, @city, @neighborhood, @street, home_number, @cep, @permissions, @function)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@cpf", obj.CPF);
-                cmd.Parameters.AddWithValue("@num_phone", obj.NumPhone);
                 cmd.Parameters.AddWithValue("@email", obj.Email);
-                cmd.Parameters.AddWithValue("User", obj.User);
-                cmd.Parameters.AddWithValue("@senha", obj.Password);
-                cmd.Parameters.AddWithValue("@logradouro", obj.Logradouro);
-                cmd.Parameters.AddWithValue("@home_num", obj.HomeNum);
-                cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
-                cmd.Parameters.AddWithValue("@cep", obj.CEP);
+                cmd.Parameters.AddWithValue("@phone_number", obj.PhoneNumber);
+                cmd.Parameters.AddWithValue("@telephone_number", obj.TelephoneNumber);
+                cmd.Parameters.AddWithValue("@user_name", obj.UserName);
+                cmd.Parameters.AddWithValue("@password", obj.Password);
+                cmd.Parameters.AddWithValue("@state", obj.State);
                 cmd.Parameters.AddWithValue("@city", obj.City);
-                cmd.Parameters.AddWithValue("@salario", obj.Salario);
-                cmd.Parameters.AddWithValue("@permicoes", obj.Permicoes);
-                cmd.Parameters.AddWithValue("@cargo", obj.Cargo);
+                cmd.Parameters.AddWithValue("@neighborhood", obj.Neighbordhood);
+                cmd.Parameters.AddWithValue("@street", obj.Street);
+                cmd.Parameters.AddWithValue("@cep", obj.CEP);
+                cmd.Parameters.AddWithValue("@wage", obj.Wage);
+                cmd.Parameters.AddWithValue("@permissions", obj.Permissions);
+                cmd.Parameters.AddWithValue("@function", obj.Function);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O funcionário {obj.Name} foi cadastrado");
+                Dialogo.Message("SUCESSO!",$"O funcionário {obj.Name} foi cadastrado");
              
             }
             catch (Exception ex)
@@ -72,15 +74,19 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Delete 
-        public static void Delete (int id)
+        /// <summary>
+        /// Deleta o Funcionário do banco de dados
+        /// </summary>
+        /// <param name="cod">Código do funcionário</param>
+        public static void Delete (int cod)
         {
             try
             {
-                new FuncionarioDAO();
-                string sql = "delete from bdholerite.tb_funcionario where id=@id";
+                new EmployeeDAO();
+                string sql = "delete from bdholerite.tb_funcionario where cod=@cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -99,32 +105,39 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region UpDate
-        public static void UpDate(Funcionario obj)
+        /// <summary>
+        /// Atualiza os dados do funcionário
+        /// </summary>
+        /// <param name="obj"></param>
+        public static void UpDate(Employee obj)
         {
             try
             {
-                new FuncionarioDAO();
-                string sql = @"update bdholerite.tb_funcionario (name=@name, cpf=@cpf,num_phone=@num_phone, emial=@emial, 
-logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city, salario=@salario, user=@user, cargo=@cargo, @password=password";
+                new EmployeeDAO();
+                string sql = @"UPDATE employee SET 
+                (name=@name, cpf=@cpf, email=@email, phone_number=@phone_number, telephone_number=@telephone_number, user_name=@user_name, password=@password, 
+                state=@state, city=@city, neighborhood=@neighborhood, street=@street, cep=@cep, wage=@wage, permissions=@permissions, function=@function";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@cpf", obj.CPF);
-                cmd.Parameters.AddWithValue("@num_phone", obj.NumPhone);
                 cmd.Parameters.AddWithValue("@email", obj.Email);
-                cmd.Parameters.AddWithValue("@logradouro", obj.Logradouro);
-                cmd.Parameters.AddWithValue("@home_num", obj.HomeNum);
-                cmd.Parameters.AddWithValue("@bairro", obj.Bairro);
-                cmd.Parameters.AddWithValue("@cep", obj.CEP);
-                cmd.Parameters.AddWithValue("@city", obj.City);
-                cmd.Parameters.AddWithValue("@salario", obj.Salario);
-                cmd.Parameters.AddWithValue("@user", obj.User);
-                cmd.Parameters.AddWithValue("@cargo", obj.Permicoes);
+                cmd.Parameters.AddWithValue("@phone_number", obj.PhoneNumber);
+                cmd.Parameters.AddWithValue("@telephone_number", obj.TelephoneNumber);
+                cmd.Parameters.AddWithValue("@user_name", obj.UserName);
                 cmd.Parameters.AddWithValue("@password", obj.Password);
+                cmd.Parameters.AddWithValue("@state", obj.State);
+                cmd.Parameters.AddWithValue("@city", obj.City);
+                cmd.Parameters.AddWithValue("@neighborhood", obj.Neighbordhood);
+                cmd.Parameters.AddWithValue("@street", obj.Street);
+                cmd.Parameters.AddWithValue("@cep", obj.CEP);
+                cmd.Parameters.AddWithValue("@wage", obj.Wage);
+                cmd.Parameters.AddWithValue("@permissions", obj.Permissions);
+                cmd.Parameters.AddWithValue("@function", obj.Function);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O funcionário {obj.Name} foi cadastrado");
+                Dialogo.Message("SUCESSO!", $"O funcionário {obj.Name} foi cadastrado");
 
             }
             catch (Exception ex)
@@ -139,14 +152,18 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
         #endregion
 
         #region Consultar
+        /// <summary>
+        /// Consulta os dados do funcionário
+        /// </summary>
+        /// <returns></returns>
         public static DataTable Consultar()
         {
             try
             {
-                new FuncionarioDAO();
+                new EmployeeDAO();
                 DataTable dt = new DataTable();
 
-                string sql = @"select * from bdholerite.tb_funcionario";
+                string sql = @"SELECT * FROM employee";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, _connection);
                 _connection.Open();
@@ -172,16 +189,16 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
         /// <summary>
         /// Consultar funcionario pelo nome click
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Nome do funcionário</param>
         /// <returns></returns>
         public static DataTable Buscar(string name)
         {
             try
             {
-                new FuncionarioDAO();
+                new EmployeeDAO();
                 DataTable dt = new DataTable();
 
-                string sql = @"select * from bdholerite.tb_funcionario where name=@name";
+                string sql = @"SELECT * FROM employee WHERE name=@name";
 
                 MySqlCommand cmd = new MySqlCommand(sql,_connection);
                 cmd.Parameters.AddWithValue("@nome", name);
@@ -216,11 +233,11 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
         {
             try
             {
-                new FuncionarioDAO();
+                new EmployeeDAO();
                 name = "%" + name + "%";
                 DataTable dt = new DataTable();
 
-                string sql = @"select from bdholerite.tb_funcionario name like @name";
+                string sql = @"SELECT FROM employee name LIKE @name";
 
                 MySqlCommand cmd = new MySqlCommand( sql,_connection);
                 cmd.Parameters.AddWithValue("@name", name);
@@ -246,11 +263,17 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
         #endregion
 
         #region Login
+        /// <summary>
+        /// Realiza a verificação do usuário no banco de dados
+        /// </summary>
+        /// <param name="username">Nome do usuário</param>
+        /// <param name="password">Senha do usuário</param>
+        /// <returns></returns>
         public static bool Login(string username, string password)
         {
             try
             {
-                string sql = "select * from tb_funcionario where name = @name and password = @password";
+                string sql = "SELECT * FROM user_employee WHERE name = @name AND password = @password";
                 
                 MySqlCommand cmd = new MySqlCommand(sql,_connection);
                 cmd.Parameters.AddWithValue("@name", username);
@@ -259,9 +282,9 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
                 MySqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    Funcionario obj = new Funcionario()
+                    Employee obj = new Employee()
                     {
-                        User = dr.GetString("name"),
+                        UserName = dr.GetString("name"),
                         Password = dr.GetString("password")
                     };
                     return true;
@@ -275,7 +298,7 @@ logradouro=@logradouro, home_num=@home_num, bairro=@bairro, cep=@cep, city=@city
             }
             catch (Exception ex)
             {
-                Dialogo.Message("ATENÇÃO", $"");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com caminho para {ex.StackTrace}");
                 return false;
 
             }
