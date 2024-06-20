@@ -19,5 +19,10 @@ namespace SistemaHolerite.MODEL.Helpers
         {
             MessageBox.Show(message, title);
         }
+
+        public static string LikeString(string text)
+        {
+            return "%" + text + "%";
+        }
     }
 }
