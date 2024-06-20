@@ -21,34 +21,32 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
+        /// <summary>
+        /// Cadastra o holerite no banco de dados
+        /// </summary>
+        /// <param name="obj">Holerite</param>
         public static void Insert(Holerite obj)
         {
             try
             {
-                string sql = @"INSERT INDO tb_holerite () 
-                values()";
+                string sql = @"INSERT INDO holerite(sal_basic, sal_contr_inss, basic_calc_fgts, fgts_month, basic_calc_irrf, range_irrf, employee_cod, company_cod) 
+                VALUES(@sal_baisc, @sal_contr_inss, @basic_calc_fgts, @fgts_month, @basic_calc_irrf, @range_irrf, @employee_cod, @company_cod)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
+                cmd.Parameters.AddWithValue("@sal_basic", obj.BasicSal);
+                cmd.Parameters.AddWithValue("@sal_contr_inss", obj.SalContrINNS);
+                cmd.Parameters.AddWithValue("@basic_calc_fgts", obj.BasicCalcFGTS);
+                cmd.Parameters.AddWithValue("@fgts_month", obj.FGTSMonth);
+                cmd.Parameters.AddWithValue("@basic_calc_irrf", obj.BasicCalcIRRF);
+                cmd.Parameters.AddWithValue("@range_irrf", obj.RangeIRRF);
+                cmd.Parameters.AddWithValue("@employee_cod", obj.CodEmployee);
+                cmd.Parameters.AddWithValue("@company_cod", obj.CodCompany);
 
                 _connection.Open();
 
                 cmd.ExecuteNonQuery();
 
-                Dialogo.Message("Cadastro", "Holerite foi cadastro com sucesso!");
+                Dialogo.Message("SUCESSO!", "Holerite foi cadastro com sucesso!");
             }
             catch (Exception ex)
             {
@@ -62,28 +60,27 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Update
+        /// <summary>
+        /// Atualiza os dados do holerite no banco de dados
+        /// </summary>
+        /// <param name="obj"></param>
         public static void Update(Holerite obj)
         {
             try
             {
-                string sql = "UPDATE tb_holerite()";
+                string sql = @"UPDATE holerite SET(company_cod=@company_cod, employee_cod=@employee_cod, sal_basic=@sal_basic, sal_contr_inss=@sal_contr_inss, 
+                basic_calc_fgts=@basic_calc_fgts, fgts_month=@fgts_month, basic_calc_irrf=@basic_calc_irrf, range_irrf=@range_irrf) WHERE cod=@cod";
 
                 MySqlCommand cmd = new MySqlCommand( sql, _connection);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
-                cmd.Parameters.AddWithValue("", obj);
+                cmd.Parameters.AddWithValue("@company_cod", obj.CodCompany);
+                cmd.Parameters.AddWithValue("@employee_cod", obj.CodEmployee);
+                cmd.Parameters.AddWithValue("@sal_basic", obj.BasicSal);
+                cmd.Parameters.AddWithValue("@sal_contr_inss", obj.SalContrINNS);
+                cmd.Parameters.AddWithValue("@basic_calc_fgts", obj.BasicCalcFGTS);
+                cmd.Parameters.AddWithValue("@fgts_month", obj.FGTSMonth);
+                cmd.Parameters.AddWithValue("@basic_calc_irrf", obj.BasicCalcIRRF);
+                cmd.Parameters.AddWithValue("@range_irrf", obj.RangeIRRF);
+                cmd.Parameters.AddWithValue("@cod", obj.Cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -101,14 +98,18 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Delete
-        public static void Delete(int id)
+        /// <summary>
+        /// Deleta o funcionário do banco de dados
+        /// </summary>
+        /// <param name="cod">Código do funcoinário</param>
+        public static void Delete(int cod)
         {
             try
             {
-                string sql = "Delete from tb_holerite where id=@id";
+                string sql = "DELETE FROM holerite WHERE cod=@cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod", cod);
 
                 _connection.Open();
 
@@ -124,13 +125,17 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Consult
+        /// <summary>
+        /// Consulta todos os holerites no banco de dados
+        /// </summary>
+        /// <returns></returns>
         public static DataTable Consult()
         {
             try
             {
                 new HoleriteDAO();
                 DataTable dt = new DataTable();
-                string sql = "SELECT * FROM tb_holerite";
+                string sql = "SELECT * FROM holerite";
 
                 MySqlCommand cmd = new MySqlCommand( sql, _connection);
 
@@ -152,15 +157,22 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Consult Name
-        public static DataTable Consult(string name)
+        /// <summary>
+        /// Consulta o holerite pelo nome do funcionário
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static DataTable Consult(string userName)
         {
+            userName = Dialogo.LikeString(userName); 
             try
             {
+                new HoleriteDAO();
                 DataTable dt = new DataTable();
-                string sql = "SELECT * FROM tb_holerite where name=@name";
+                string sql = "SELECT * FROM holerite user_name LIKE @user_name";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@user_name)", userName);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -183,16 +195,20 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Buscar
-        public static DataTable Buscar(string name)
+        /// <summary>
+        /// Busca o holerite com o nome do funcionário
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static DataTable Buscar(string userName)
         {
-            name = "%" + name + "%"; 
             try
             {
                 DataTable dt = new DataTable();
-                string sql = "SELECT * FROM tb_holerite name like @name";
+                string sql = "SELECT * FROM holerite WHERE user_name=@user_name";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@user_name", userName);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -215,13 +231,17 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region EndHolerite
+        /// <summary>
+        /// Busca o ultimo holerite cadastrado no banco de dados
+        /// </summary>
+        /// <returns>O ultimo código do cadastrado no banco de dados</returns>
         public static int EndHolerite()
         {
-            int id = 0;
+            int cod = 0;
             try
             {
                 DataTable dt = new DataTable();
-                string sql = "SELECT max(id) id FROM tb_holerite";
+                string sql = "SELECT max(cod) cod FROM holerite";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
 
@@ -231,18 +251,18 @@ namespace SistemaHolerite.DAO
 
                 if (dr.Read())
                 {
-                    id = Convert.ToInt32("id");
+                    cod = Convert.ToInt32("cod");
                 }
                 else
                 {
-                    MessageBox.Show($"");
+                    MessageBox.Show($"Verifique a sua conexão com o banco de dados!");
                 }
 
-                return id;
+                return cod;
             }
             catch (Exception ex)
             {
-                Dialogo.Message("ATENÇÃO", $"Código {id} não conrrespondete a um holerite no banco de dados");
+                Dialogo.Message("ATENÇÃO", $"Código {cod} não conrrespondete a um holerite no banco de dados");
                 return 0;
             }
             finally
