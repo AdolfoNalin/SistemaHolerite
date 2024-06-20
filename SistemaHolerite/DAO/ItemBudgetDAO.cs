@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using SistemaHolerite.Connection;
 using SistemaHolerite.MODEL;
+using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,17 +22,23 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
+        /// <summary>
+        /// Cadastra os itens do orçamento no banco de dados
+        /// </summary>
+        /// <param name="obj">Objeto Item do orçamento</param>
         public static void Insert(ItemBudget obj)
         {
             try
             {
                 new ItemBudgetDAO();
-                string sql = "insert into tb_itemvenda (id_orcamento, id_produto, preco) value (@id_orcamento, @id_produto, @preco)";
+                string sql = "INSERT INTO item_budget (cod_budget, cod_severce, price, amount, subtotal) VALUE (@cod_budget, @cod_severce, @amount, @price, @subtotal)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id_orcamento", obj.IdOrcamento);
-                cmd.Parameters.AddWithValue("@id_produto", obj.IdProduto);
-                cmd.Parameters.AddWithValue("@preco", obj.Price);
+                cmd.Parameters.AddWithValue("@cod_budget", obj.CodBudget);
+                cmd.Parameters.AddWithValue("@cod_severce", obj.CodSeverce);
+                cmd.Parameters.AddWithValue("@amount", obj.Amount);
+                cmd.Parameters.AddWithValue("@price", obj.Price);
+                cmd.Parameters.AddWithValue("@subtotal", obj.Subtotal);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -48,17 +55,22 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region UpData
+        /// <summary>
+        /// Atualiza os itens do orçamento
+        /// </summary>
+        /// <param name="obj">Objeto item orçamento</param>
         public static void UpData(ItemBudget obj)
         {
             try
             {
                 new ItemBudgetDAO();
-                string sql = "update tb_itemOrcamento (id_produto=@id_produto, qtd, preco=@preco)";
+                string sql = "UPDATE item_budget SET amount=@amount, price=@price, subtotal=@subtotal WHERE cod=@cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id_produto", obj.IdProduto);
-                cmd.Parameters.AddWithValue("@qtd", obj.Qtd);
-                cmd.Parameters.AddWithValue("@preco", obj.Price);
+                cmd.Parameters.AddWithValue("@cod_severce", obj.CodSeverce);
+                cmd.Parameters.AddWithValue("@amount", obj.Amount);
+                cmd.Parameters.AddWithValue("@price", obj.Price);
+                cmd.Parameters.AddWithValue("@subtotal", obj.Subtotal);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -76,15 +88,19 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Delete
-        public static void Delete(int id)
+        /// <summary>
+        /// Deleta os itens do orçamento do banco de dados
+        /// </summary>
+        /// <param name="cod">Código do orçamento</param>
+        public static void Delete(int cod)
         {
             try
             {
                 new ItemBudgetDAO();
-                string sql = "delete tb_itemvenda id where @id";
+                string sql = "DELETE item_budget cod_budget WHERE @cod_budget";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod_budget", cod);
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
@@ -102,17 +118,22 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Consult
-        public static DataTable GetConsult(int id)
+        /// <summary>
+        /// Consulta os itens de um orçamento no banco de dados
+        /// </summary>
+        /// <param name="cod">código do orçamento</param>
+        /// <returns></returns>
+        public static DataTable GetConsult(int cod)
         {
             try
             {
                 new ItemBudgetDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_itemorcamento id_orcamento where @id_orcamento";
+                string sql = "SELECT * FROM item_budget cod_budget WHERE @cod_budget";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id_orcamento", id);
+                cmd.Parameters.AddWithValue("@cod_budget", cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
