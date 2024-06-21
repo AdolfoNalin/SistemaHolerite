@@ -2,12 +2,15 @@
 using Org.BouncyCastle.Asn1.Mozilla;
 using SistemaHolerite.Connection;
 using SistemaHolerite.MODEL;
+using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaHolerite.MODEL.Helpers;
+using System.Security.Cryptography;
 
 namespace SistemaHolerite.DAO
 {
@@ -19,57 +22,69 @@ namespace SistemaHolerite.DAO
             _connection = new ConnectionFactory().GetConnection();
         }
 
-        #region Isert indo
-        public static void Insert(Produto obj)
+        #region Insert
+        /// <summary>
+        /// Cadastra o produto no banco de dados
+        /// </summary>
+        /// <param name="obj">Objeto Produtos</param>
+        public static void Insert(Product obj)
         {
             try
             {
                 new ProductDAO();
 
-                string sql = @"insert into tb_productor (dr,dc, id_resp,pv,pp,obs)
-                    value (@dr,@dc,@resp,@pv,@pp,@obs)";
+                string sql = @"INSERT INTO product (short_description, full_description, cod_supplier, term_price,spot_price,obs, amount,ca)
+                VALUE (@short_description,@full_descrition, @cod_supplier,@term_price,@spot_price,@obs),@amount,@ca";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", obj.DR);
-                cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
-                cmd.Parameters.AddWithValue("@pv", obj.PV);
-                cmd.Parameters.AddWithValue("@pp", obj.PP);
-                cmd.Parameters.AddWithValue("@obj", obj.Obs);
+                cmd.Parameters.AddWithValue("@short_description", obj.BriefDescription);
+                cmd.Parameters.AddWithValue("@full_description", obj.FullDescription);
+                cmd.Parameters.AddWithValue("@cod_supplier", obj.CodSupplier);
+                cmd.Parameters.AddWithValue("@spot_price", obj.CashPrice);
+                cmd.Parameters.AddWithValue("@term_price", obj.TermPrice);
+                cmd.Parameters.AddWithValue("@obs", obj.Observation);
+                cmd.Parameters.AddWithValue("@amount", obj.Amount);
+                cmd.Parameters.AddWithValue("@ca", obj.CA);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show($"O produto {obj.DR} foi salvo com sucesso");
-            } 
+                Dialogo.Message("SUCESSO",$"O produto {obj.BriefDescription} foi salvo com sucesso");
+            }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
             }
             finally { _connection.Close(); }
         }
         #endregion
 
         #region Update
-        public static void UpDate(Produto obj)
+        /// <summary>
+        /// Atualiza os dados do produto no banco de dados
+        /// </summary>
+        /// <param name="obj">Objeto produto</param>
+        public static void UpDate(Product obj)
         {
             try
             {
                 new ProductDAO();
-                string sql = @"update tb_productor (dr=@dr, dc=@dc, id_resp=@resp,
-                    pv=@pv, pp=@pp, obs=@obs)";
+                string sql = @"UPDATE product SET short_description=@short_description, full_description=@full_description, cod_supplier=@cod_supplier,
+                spot_price=@spot-price, term_price=@term_price, obs=@obs, amount=@amount, ca=@ca";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", obj.DR);
-                cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.IdRes); 
-                cmd.Parameters.AddWithValue("@pv", obj.PV);
-                cmd.Parameters.AddWithValue("@pp", obj.PP);
-                cmd.Parameters.AddWithValue("@obs", obj.Obs);
+                cmd.Parameters.AddWithValue("@short_description", obj.BriefDescription);
+                cmd.Parameters.AddWithValue("@full_description", obj.FullDescription);
+                cmd.Parameters.AddWithValue("@cod_supplier", obj.CodSupplier);
+                cmd.Parameters.AddWithValue("@spot_price", obj.CashPrice);
+                cmd.Parameters.AddWithValue("@term_price", obj.TermPrice);
+                cmd.Parameters.AddWithValue("@obs", obj.Observation);
+                cmd.Parameters.AddWithValue("@amount", obj.Amount);
+                cmd.Parameters.AddWithValue("@ca", obj.CA);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O produto {obj.DR} foi Atualizado com sucesso");
+                MessageBox.Show($"O produto {obj.BriefDescription} foi Atualizado com sucesso");
             }
             catch (Exception ex)
             {
@@ -80,24 +95,28 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Delete
-        public static void Delete(int id)
+        /// <summary>
+        /// Deleta o produto do banco de dados
+        /// </summary>
+        /// <param name="cod"></param>
+        public static void Delete(int cod)
         {
             try
             {
                 new ProductDAO();
-                string sql = "delete tb_prodoctor id where @id";
+                string sql = "DELETE product WHERE @cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod", cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Produto foi deletado com sucesso!");
+                Dialogo.Message("SUCESSO", "Produto foi deletado com sucesso!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
             }
             finally { _connection.Close(); }
 
@@ -106,24 +125,33 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Consult
+        /// <summary>
+        /// Consulta todos os produtos no banco de dados
+        /// </summary>
+        /// <returns></returns>
         public static DataTable Consult()
         {
+            DataTable dt = new DataTable();
             try
             {
                 new ProductDAO();
-                DataTable dt = new DataTable();
 
-                string sql = "select * from tb_prodoctor";
+                string sql = "SELECT * FROM product";
 
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.Fill(dt);
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
 
                 _connection.Open();
+                cmd.ExecuteNonQuery();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+
                 return dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATRENÇÃO", $"Aconteceu um erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
                 return null;
             }
             finally { _connection.Close(); }
@@ -131,24 +159,31 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region ConsultName
-        public static DataTable Consult(string dr)
+        /// <summary>
+        /// Consultar o produto pelo nome com de acordo com a digitação
+        /// </summary>
+        /// <param name="short_description">Descrição resumida</param>
+        /// <returns></returns>
+        public static DataTable Consult(string short_description)
         {
             try
             {
                 new ProductDAO();
-                dr = "%" + dr + "%";
+                short_description = Dialogo.LikeString(short_description);
 
                 DataTable dt = new DataTable();
-                string sql = "select * from tb_prodoctor dr like @dr";
+                string sql = "SELECT * FROM product short_description like @short_description";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", dr);
+                cmd.Parameters.AddWithValue("@short_description", short_description);
+
+                _connection.Open();
+                cmd.ExecuteNonQuery();
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                _connection.Open();
                 da.Fill(dt);
-                return dt;
 
+                return dt;
             }
             catch (Exception ex)
             {
@@ -160,17 +195,22 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Buscar
-        public static DataTable Buscar(string dr)
+        /// <summary>
+        /// Busco um protudo no banco de dados de acordo com a descrição 
+        /// </summary>
+        /// <param name="short_description">Descrição resumida</param>
+        /// <returns></returns>
+        public static DataTable Buscar(string short_description)
         {
             try
             {
                 new ProductDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_prodoctor dr where @dr";
+                string sql = "SELECT * FROM product short_description WHERE @short_description";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", dr);
+                cmd.Parameters.AddWithValue("@short_description", short_description);
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 _connection.Open();
@@ -180,7 +220,7 @@ namespace SistemaHolerite.DAO
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
                 return null;
             }
             finally
