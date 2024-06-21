@@ -24,7 +24,7 @@ namespace SistemaHolerite.VIEW.Show
         {
             string name = txtName.Text;
             string password = txtSenha.Text;
-            if (FuncionarioDAO.Login(name, password))
+            if (EmployeeDAO.Login(name, password))
             {
                 this.Hide();
                 frmMenu tela = new frmMenu();

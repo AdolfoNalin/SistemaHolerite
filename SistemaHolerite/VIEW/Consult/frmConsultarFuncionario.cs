@@ -26,7 +26,7 @@ namespace SistemaHolerite.VIEW
         /// <param name="e"></param>
         private void frmConsultarFuncionario_Load(object sender, EventArgs e)
         {
-            dgFuncionario.DataSource = FuncionarioDAO.Consultar(); ;
+            dgFuncionario.DataSource = EmployeeDAO.Consultar(); ;
         }
         #endregion
 
@@ -40,7 +40,7 @@ namespace SistemaHolerite.VIEW
         {
             string name = txtPesquisar.Text;
 
-            dgFuncionario.DataSource = FuncionarioDAO.Consultar(name);
+            dgFuncionario.DataSource = EmployeeDAO.Consultar(name);
         }
         #endregion
 
@@ -53,7 +53,7 @@ namespace SistemaHolerite.VIEW
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string name = txtPesquisar.Text;
-            dgFuncionario .DataSource = FuncionarioDAO.Buscar(name);
+            dgFuncionario .DataSource = EmployeeDAO.Buscar(name);
         }
         #endregion
 

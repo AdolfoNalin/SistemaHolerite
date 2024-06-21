@@ -26,7 +26,7 @@ namespace SistemaHolerite.VIEW
         {
             if (txtId.Text != String.Empty)
             {
-                cbRes.DataSource = FuncionarioDAO.Consultar();
+                cbRes.DataSource = EmployeeDAO.Consultar();
                 cbRes.ValueMember = "id";
                 cbRes.DisplayMember = "name";
             }

@@ -48,7 +48,7 @@ namespace SistemaHolerite.VIEW
 
                 };
 
-                FuncionarioDAO.Insert(obj);
+                EmployeeDAO.Insert(obj);
 
                 System.Windows.Forms.DialogResult resp = MessageBox.Show("Deseja cadastrar outro funcionário?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -73,7 +73,7 @@ namespace SistemaHolerite.VIEW
                 {
                     this.Hide();
                     frmConsultarFuncionario telaConsu = new frmConsultarFuncionario();
-                    telaConsu.dgFuncionario.DataSource = FuncionarioDAO.Consultar();
+                    telaConsu.dgFuncionario.DataSource = EmployeeDAO.Consultar();
                     telaConsu.ShowDialog();
                 }
             }
@@ -112,7 +112,7 @@ namespace SistemaHolerite.VIEW
 
                 };
 
-                FuncionarioDAO.UpDate(obj);
+                EmployeeDAO.UpDate(obj);
 
                 System.Windows.Forms.DialogResult resp = MessageBox.Show("Deseja editar outro funcionário?", "ATENÇÃO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -136,7 +136,7 @@ namespace SistemaHolerite.VIEW
             {
                 int id = int.Parse(txtId.Text);
 
-                FuncionarioDAO.Delete(id);
+                EmployeeDAO.Delete(id);
             }
             catch (Exception ex)
             {

@@ -21,14 +21,14 @@ namespace SistemaHolerite.VIEW.Consult
         #region Load
         private void frmConsultarHolerite_Load(object sender, EventArgs e)
         {
-            dgFuncionario.DataSource = FuncionarioDAO.Consultar();
+            dgFuncionario.DataSource = EmployeeDAO.Consultar();
         }
         #endregion
 
         #region btnPNome
         private void btnPNome_Click(object sender, EventArgs e)
         {
-            FuncionarioDAO.Consultar(txtNome.Text);
+            EmployeeDAO.Consultar(txtNome.Text);
         }
         #endregion
 
