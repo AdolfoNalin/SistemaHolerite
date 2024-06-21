@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using SistemaHolerite.Connection;
 using SistemaHolerite.MODEL;
+using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,109 +24,129 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
+        /// <summary>
+        /// Cadastra o serviço no banco de dados
+        /// </summary>
+        /// <param name="obj">Objeto</param>
         public static void Insert(Severce obj)
         {
             try
             {
                 new SeverceDAO();
 
-                string sql = @"insert into tb_servico (dr,dc, resp,pv,pp,obs)
-                    value (@dr,@dc,@resp,@pv,@pp,@obs)";
+                string sql = @"INSERT INTO severce (short_description, full_description, cod_employee, term_price,spot_price,obs)
+                VALUE (@short_description,@full_descrition, @cod_emp,@term_price,@spot_price,@obs)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", obj.DR);
-                cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
-                cmd.Parameters.AddWithValue("@pv", obj.PV);
-                cmd.Parameters.AddWithValue("@pp", obj.PP);
-                cmd.Parameters.AddWithValue("@obj", obj.Obs);
+                cmd.Parameters.AddWithValue("@short_description", obj.BriefDescription);
+                cmd.Parameters.AddWithValue("@full_description", obj.FullDescription);
+                cmd.Parameters.AddWithValue("@cod_emp", obj.CodEmp);
+                cmd.Parameters.AddWithValue("@spot_price", obj.CashPrice);
+                cmd.Parameters.AddWithValue("@term_price", obj.TermPrice);
+                cmd.Parameters.AddWithValue("@obs", obj.Observation);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show($"O serviço {obj.DR} foi salvo com sucesso");
+                Dialogo.Message("SUCESSO", $"O serviço {obj.BriefDescription} foi salvo com sucesso");
             }
             catch(Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
             }
             finally { _connection.Close(); }
         }
         #endregion
 
         #region UpDate
+        /// <summary>
+        /// Atualiza os dados do serviço no banco de dados
+        /// </summary>
+        /// <param name="obj"></param>
         public static void UpDate(Severce obj)
         {
             try
             {
                 new SeverceDAO();
-                string sql = "update tb_servico (dr=@dr, dc=@dc, resp=@resp, pv=@pv, pp=@pp, obs=@obs)";
+                string sql = @"UPDATE severce SET short_description=@short_description, full_description=@full_description, cod_employee=@cod_employee,
+                spot_price=@spot-price, term_price=@term_price, obs=@obs";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", obj.DR);
-                cmd.Parameters.AddWithValue("@dc", obj.DC);
-                cmd.Parameters.AddWithValue("@resp", obj.IdRes);
-                cmd.Parameters.AddWithValue("@pv", obj.PV);
-                cmd.Parameters.AddWithValue("@pp", obj.PP);
-                cmd.Parameters.AddWithValue("@obs", obj.Obs);
+                cmd.Parameters.AddWithValue("@short_description", obj.BriefDescription);
+                cmd.Parameters.AddWithValue("@full_description", obj.FullDescription);
+                cmd.Parameters.AddWithValue("@cod_employee", obj.CodEmp);
+                cmd.Parameters.AddWithValue("@spot_price", obj.CashPrice);
+                cmd.Parameters.AddWithValue("@term_price", obj.TermPrice);
+                cmd.Parameters.AddWithValue("@obs", obj.Observation);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show($"O serviço {obj.DR} foi Atualizado com sucesso");
+
+                Dialogo.Message("SUCESSO", $"O serviço {obj.BriefDescription} foi Atualizado com sucesso");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}");
             }
             finally { _connection.Close(); }
         }
         #endregion
 
         #region Delete
-        public static void Delete(int id)
+        /// <summary>
+        /// Deleta o serviço do banco de dados
+        /// </summary>
+        /// <param name="cod">Código do serviço</param>
+        public static void Delete(int cod)
         {
             try
             {
                 new SeverceDAO();
-                string sql = "delete tb_servico id where @id";
+                string sql = "DELETE severce WHERE cod=@cod";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod", cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Serviço foi deletado com sucesso!");
+                Dialogo.Message("SUCESSO","Serviço foi deletado com sucesso!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
             }
             finally { _connection.Close(); }
-
-
         }
         #endregion
 
         #region Consult
+        /// <summary>
+        /// consulta todos os serviços do banco de dados
+        /// </summary>
+        /// <returns></returns>
         public static DataTable Consult()
         {
+            DataTable dt = new DataTable();
             try
             {
                 new SeverceDAO();
-                DataTable dt = new DataTable();
 
-                string sql = "select * from tb_servico";
+                string sql = "SELECT * FROM severce";
 
-                MySqlDataAdapter da = new MySqlDataAdapter();
-                da.Fill(dt);
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
 
                 _connection.Open();
+                cmd.ExecuteNonQuery();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+
                 return dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Aconteceu um erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
                 return null;
             }
             finally { _connection.Close(); }
@@ -133,18 +154,26 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region ConsultName
-        public static DataTable Consult(string dr)
+        /// <summary>
+        /// Consulta o serviço pelo nome com a digitação
+        /// </summary>
+        /// <param name="short_description">Descrição resumida</param>
+        /// <returns></returns>
+        public static DataTable Consult(string short_description )
         {
             try
             {
                 new SeverceDAO();
-                dr = "%" + dr + "%";
+                short_description = Dialogo.LikeString(short_description);
 
                 DataTable dt = new DataTable();
-                string sql = "select * from tb_servico dr like @dr";
+                string sql = "SELECT * FROM severce short_description LIKE @short_description";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", dr);
+                cmd.Parameters.AddWithValue("@short_description", short_description);
+
+                _connection.Open();
+                cmd.ExecuteNonQuery();
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 _connection.Open();
@@ -162,33 +191,40 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region BuscarId
-        public static Severce Buscar(int id)
+        /// <summary>
+        /// Busca o serviço pelo código
+        /// </summary>
+        /// <param name="cod">código do produto</param>
+        /// <returns></returns>
+        public static Severce Buscar(int cod)
         {
             try
             {
                 new SeverceDAO();
                 Severce obj = new Severce();
 
-                string sql = "select * from tb_prodoctor id where @id";
+                string sql = "SLECET * FROM severce cod where @cod";
 
                 MySqlCommand cmd = new MySqlCommand( sql, _connection);
+                cmd.Parameters.AddWithValue("@cod", cod);
+
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 if(dr.Read())
                 {
-                    obj.DR = dr.GetString("descricao_completa");
-                    obj.PV = dr.GetFloat("preco_vista");
-                    obj.PP = dr.GetFloat("preco_prazo)");
+                    obj.BriefDescription = dr.GetString("full_description");
+                    obj.CashPrice = dr.GetFloat("spot_price");
+                    obj.TermPrice = dr.GetFloat("term_price)");
                 }
 
                 return obj;
             }catch(MySqlException ex)
             {
-                MessageBox.Show($"Aconteceu um erro com a conexão!");
+                Dialogo.Message("ATENÇÃO",$"Aconteceu um erro com a conexão!");
                 return null;
             }catch(Exception ex)
             {
-                MessageBox.Show($"Aconteceu erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
+                Dialogo.Message("ATENÇÃO", $"Aconteceu erro com o caminho {ex.Message} com o caminho para {ex.StackTrace}");
                 return null;
             }
             finally
@@ -199,20 +235,27 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Buscar
-        public static DataTable Buscar(string dr)
+        /// <summary>
+        /// Busca o serviço pela descrição resumida
+        /// </summary>
+        /// <param name="short_description">Descrição do serviço</param>
+        /// <returns></returns>
+        public static DataTable Buscar(string short_description)
         {
             try
             {
                 new SeverceDAO();
                 DataTable dt = new DataTable();
 
-                string sql = "select * from tb_servico dr where @dr";
+                string sql = "SELECT * FROM tb_servico short_description WHERE @short_decription";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@dr", dr);
+                cmd.Parameters.AddWithValue("@short_description", short_description);
+
+                _connection.Open();
+                cmd.ExecuteNonQuery();
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                _connection.Open();
                 da.Fill(dt);
 
                 return dt;
