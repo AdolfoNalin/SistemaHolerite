@@ -104,7 +104,7 @@ namespace SistemaHolerite.DAO
             {
                 new ClientDAO();
                 string sql = @"UPDATE client
-                (name=@name, cpf=@cpf, emial=@emial, phone_number=@phone_number, telephone_number=@telephone_number, 
+                SET name=@name, cpf=@cpf, emial=@emial, phone_number=@phone_number, telephone_number=@telephone_number, 
                 state=@state, city=@city, neighborhood=@neighborhood, street=@street, home_number, cep=@cep";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
