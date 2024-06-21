@@ -34,7 +34,7 @@ namespace SistemaHolerite.DAO
                 new ProductDAO();
 
                 string sql = @"INSERT INTO product (short_description, full_description, cod_supplier, term_price,spot_price,obs, amount,ca)
-                VALUE (@short_description,@full_descrition, @cod_supplier,@term_price,@spot_price,@obs),@amount,@ca";
+                VALUE (@short_description,@full_descrition, @cod_supplier,@term_price,@spot_price,@obs,@amount,@ca)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
                 cmd.Parameters.AddWithValue("@short_description", obj.BriefDescription);
