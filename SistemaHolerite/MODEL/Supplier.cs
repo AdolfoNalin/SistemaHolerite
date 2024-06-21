@@ -8,5 +8,7 @@ namespace SistemaHolerite.MODEL
 {
     public class Supplier : Client
     {
+        public string FantasyName { get; set; }
+        public string CNPJ { get; set; }
     }
 }
