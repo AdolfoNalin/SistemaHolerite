@@ -49,18 +49,16 @@ namespace SistemaHolerite.DAO
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
-                Dialogo.Message("SUCESSO!", $"Resumo foi criado com sucesso!");
             }
             catch (Exception ex)
             {
                 Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o camìnho para {ex.StackTrace}");
-                throw;
             }
             finally { _connection.Close(); }
         }
         #endregion
 
-        #region Consult
+        #region Consult cod point
         /// <summary>
         /// Consulta o resumo geral baseado no código do ponto
         /// </summary>
