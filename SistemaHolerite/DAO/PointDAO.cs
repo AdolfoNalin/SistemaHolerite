@@ -5,9 +5,11 @@ using SistemaHolerite.MODEL.Helpers;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,19 +25,22 @@ namespace SistemaHolerite.DAO
         }
 
         #region Insert
+        /// <summary>
+        /// Cadastra o cabeçario do ponto no banco de dados
+        /// </summary>
+        /// <param name="obj">Informações do ponto</param>
         public static void InsetIndo(MODEL.Point obj)
         {
             try
             {
-                string sql = @"INSERT INDO tb.ponto()
-                values()";
+                new PointDAO();
+                string sql = @"INSERT INDO point(cod_company, cod_emp)
+                value(@cod_company, @cod_emp)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@empregado", obj.Empregado.Nome);
-                cmd.Parameters.AddWithValue("@funcao", obj.Empregado.Funcao);
-                cmd.Parameters.AddWithValue("@mes", obj.Empregado.Mes);
-                cmd.Parameters.AddWithValue("@ano", obj.Empregado.Ano);
-
+                cmd.Parameters.AddWithValue("@cod_company", obj.CodCom);
+                cmd.Parameters.AddWithValue("@cod_emp", obj.CodEmp);
+                
                 _connection.Open();
                 cmd.ExecuteNonQuery();
 
@@ -51,13 +56,18 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region Delete
-        public static void Delete(int id)
+        /// <summary>
+        /// Deleta o ponto do banco de dados
+        /// </summary>
+        /// <param name="cod">codigo do ponto</param>
+        public static void Delete(int cod)
         {
             try
             {
-                string sql = "Delete tb_ponto id where @id";
+                new PointDAO();
+                string sql = "DELETE point WHERE cod=@cod";
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cod", cod);
 
                 _connection.Open();
                 cmd.ExecuteNonQuery();
@@ -73,26 +83,33 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region GetEndPonto
+        /// <summary>
+        /// Traz o ultimo ponto do banco de dados
+        /// </summary>
+        /// <returns></returns>
         public static int GetEnd()
         {
             try
             {
-                int id = 0;
-                string sql = "SELECT MAX(id) FROM tb_ponto";
+                new PointDAO();
+                int cod = 0;
+                string sql = "SELECT MAX(cod) FROM point";
                 MySqlCommand cmd = new MySqlCommand(sql, _connection);
+                
                 _connection.Open();
+                
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 if(dr.Read())
                 {
-                    id = dr.GetInt16("id");
+                    cod = dr.GetInt16("cod");
                 }
                 else
                 {
                     Dialogo.Message("ATENÇÃO", $"Ponto não encontrado! Verifique a conexão com o banco de dados!");
                 }
 
-                return id;
+                return cod;
             }
             catch (Exception ex)
             {
@@ -104,27 +121,41 @@ namespace SistemaHolerite.DAO
         #endregion
 
         #region GetData
-        public static MODEL.Point GetData(DateTime data)
+        /// <summary>
+        /// Busca os pontos de acordo com a data de inicio e fim
+        /// </summary>
+        /// <param name="dataStart">Data inicio</param>
+        /// <param name="dataStart">Data fim</param>
+        /// <returns></returns>
+        public static DataTable GetData(DateTime dataStart, DateTime dataEnd)
         {
+            DataTable dt = new DataTable();
             try
             {
-                MODEL.Point obj = new MODEL.Point();
-                string sql = "SELECT * FROM tb_ponto WHERE data between @data";
-                MySqlCommand cmd = new MySqlCommand( sql, _connection);
-                cmd.Parameters.AddWithValue("@data", data);
+                new PointDAO();
+                string sql = @"SELECT 
+	            c.name as 'Nome Empresa',
+	            c.fantasy_name as 'Nome Fantasia', 
+	            c.city as 'Cidade',
+	            u.emp_name as 'Nome Funcionário',
+	            u.emp_function as 'Função'
+	            FROM point as p 
+	            JOIN user_employee as u on (p.cod_emp = u.cod)
+	            JOIN company as c on (p.cod_company = c.cod)
+	            JOIN item_point as i on (p.cod = i.cod_point)
+	            WHERE i.date_point between @data_start and @data_end";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@data_start", dataStart);
+                cmd.Parameters.AddWithValue("@data_end", dataEnd);
 
                 _connection.Open();
-                MySqlDataReader dr = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
 
-                if (dr.Read())
-                {
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
 
-                }
-                else
-                {
-                    Dialogo.Message("ATENÇÃO", "Não foi possivel encontrar! Verifique a conexão com o banco de dados");
-                }
-                return obj;
+                return dt;
             }
             catch (Exception ex)
             {
@@ -134,6 +165,82 @@ namespace SistemaHolerite.DAO
             finally
             {
                 _connection.Close();
+            }
+        }
+        #endregion
+
+        #region GetNameConsult
+        /// <summary>
+        /// Consulta o ponto de acordo com o nome do funcionário
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static DataTable GetNameConsult(string name)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                new PointDAO();
+                string sql = @"LECT i.date_point as 'Data',
+                u.emp_name as 'Nome Funcionário',
+                u.emp_function as 'Função'
+                FROM point as p 
+                JOIN user_employee as u on (p.cod_emp = u.cod)
+                JOIN company as c on (p.cod_company = c.cod)
+                JOIN item_point as i on (p.cod = i.cod_point) 
+                WHERE u.emp_name LIKE @name";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@name", name);
+
+                _connection.Open();
+                cmd.ExecuteNonQuery();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com caminho para {ex.StackTrace}");
+                return null;
+            }
+            finally { _connection.Close(); }
+        }
+        #endregion
+
+        #region GetSearchName
+        /// <summary>
+        /// Busca o ponto do funcionário pelo nome
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static DataTable GetSearchName(string name)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                new PointDAO();
+
+                string sql = @"LECT i.date_point as 'Data',
+                u.emp_name as 'Nome Funcionário',
+                u.emp_function as 'Função'
+                FROM point as p 
+                JOIN user_employee as u on (p.cod_emp = u.cod)
+                JOIN company as c on (p.cod_company = c.cod)
+                JOIN item_point as i on (p.cod = i.cod_point) 
+                WHERE u.emp_name = @name";
+
+                MySqlCommand cmd = new MySqlCommand(sql,_connection);
+                cmd.Parameters.AddWithValue("@name", name);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Dialogo.Message("ATENÇÃO", $"Aconteceu um erro do tipo {ex.Message} com o caminho para {ex.StackTrace}"); 
+                return null;
             }
         }
         #endregion
