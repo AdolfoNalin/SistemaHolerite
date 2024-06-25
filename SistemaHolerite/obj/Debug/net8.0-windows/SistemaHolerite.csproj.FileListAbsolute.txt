@@ -79,3 +79,5 @@ C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.Show.frmMenu.resources
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.Update.frmPonto.resources
 C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.Consult.frmConsultarPonto.resources
+C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.Insert.CadastrarPoint.resources
+C:\Users\nalin\Desktop\Projetos\SistemaHolerite\SistemaHolerite\obj\Debug\net8.0-windows\SistemaHolerite.VIEW.frmCadastrarHolerite.resources
