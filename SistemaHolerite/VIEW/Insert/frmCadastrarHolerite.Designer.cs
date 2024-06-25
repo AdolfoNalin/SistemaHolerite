@@ -1,6 +1,6 @@
 ﻿namespace SistemaHolerite.VIEW
 {
-    partial class frmHolerite
+    partial class frmCadastrarHolerite
     {
         /// <summary>
         /// Required designer variable.

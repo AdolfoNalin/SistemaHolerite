@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace SistemaHolerite.VIEW
 {
-    public partial class frmHolerite : Form
+    public partial class frmCadastrarHolerite : Form
     {
-        public frmHolerite()
+        public frmCadastrarHolerite()
         {
             InitializeComponent();
         }
