@@ -27,6 +27,11 @@ namespace SistemaHolerite.VIEW
         }
 
         #region Salvar
+        /// <summary>
+        /// Botão que salva o produto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
@@ -37,12 +42,12 @@ namespace SistemaHolerite.VIEW
                     {
                         Product produto = new Product()
                         {
-                            DR = dgCP.CurrentRow.Cells[0].Value.ToString(),
-                            DC = dgCP.CurrentRow.Cells[1].Value.ToString(),
-                            IdRes = int.Parse(dgCP.CurrentRow.Cells[0].Value.ToString()),
-                            PV = float.Parse(txtPV.Text),
-                            PP = float.Parse(txtPP.Text),
-                            Obs = txtObs.Text
+                            BriefDescription = dgCP.CurrentRow.Cells[0].Value.ToString(),
+                            FullDescription = dgCP.CurrentRow.Cells[1].Value.ToString(),
+                            CodEmp = int.Parse(dgCP.CurrentRow.Cells[0].Value.ToString()),
+                            CashPrice = float.Parse(txtPV.Text),
+                            TermPrice = float.Parse(txtPP.Text),
+                            Observation = txtObs.Text
                         };
 
                         ProductDAO.Insert(produto);
@@ -99,15 +104,15 @@ namespace SistemaHolerite.VIEW
                 {
                     Product obj = new Product();
 
-                    obj.DR = txtDR.Text;
-                    obj.DC = txtDC.Text;
-                    obj.IdRes = 0;//int.Parse(cbFor.ValueMember.ToString());
-                    obj.PV = float.Parse(txtPV.Text);
-                    obj.PP = float.Parse(txtPP.Text);
-                    obj.Qtd = int.Parse(txtQtd.Text);
-                    obj.Obs = txtObs.Text;
+                    obj.BriefDescription = txtDR.Text;
+                    obj.FullDescription = txtDC.Text;
+                    obj.CodEmp = 0;//int.Parse(cbFor.ValueMember.ToString());
+                    obj.CashPrice = float.Parse(txtPV.Text);
+                    obj.TermPrice = float.Parse(txtPP.Text);
+                    obj.Amount = int.Parse(txtQtd.Text);
+                    obj.Observation = txtObs.Text;
 
-                    dgCP.Rows.Add(obj.DC, obj.DR, obj.PV, obj.PP, obj.Qtd, obj.Obs);
+                    dgCP.Rows.Add(obj.BriefDescription, obj.CashPrice, obj.TermPrice, obj.Amount, obj.Observation);
 
                     txtId.Text = string.Empty;
                     txtDC.Text = string.Empty;

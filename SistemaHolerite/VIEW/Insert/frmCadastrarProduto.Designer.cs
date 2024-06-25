@@ -33,7 +33,7 @@
             txtId = new TextBox();
             lblId = new Label();
             txtObs = new TextBox();
-            llbComplemento = new Label();
+            lblObs = new Label();
             txtPV = new TextBox();
             lblPV = new Label();
             txtPP = new TextBox();
@@ -99,14 +99,14 @@
             txtObs.Size = new Size(623, 67);
             txtObs.TabIndex = 88;
             // 
-            // llbComplemento
+            // lblObs
             // 
-            llbComplemento.AutoSize = true;
-            llbComplemento.Location = new Point(77, 177);
-            llbComplemento.Name = "llbComplemento";
-            llbComplemento.Size = new Size(87, 15);
-            llbComplemento.TabIndex = 87;
-            llbComplemento.Text = "Complemento:";
+            lblObs.AutoSize = true;
+            lblObs.Location = new Point(93, 179);
+            lblObs.Name = "lblObs";
+            lblObs.Size = new Size(72, 15);
+            lblObs.TabIndex = 87;
+            lblObs.Text = "Observação:";
             // 
             // txtPV
             // 
@@ -318,7 +318,7 @@
             Controls.Add(txtId);
             Controls.Add(lblId);
             Controls.Add(txtObs);
-            Controls.Add(llbComplemento);
+            Controls.Add(lblObs);
             Controls.Add(txtPV);
             Controls.Add(lblPV);
             Controls.Add(txtPP);
@@ -346,7 +346,7 @@
         private TextBox txtId;
         private Label lblId;
         private TextBox txtObs;
-        private Label llbComplemento;
+        private Label lblObs;
         private TextBox txtPV;
         private Label lblPV;
         private TextBox txtPP;

@@ -33,17 +33,17 @@ namespace SistemaHolerite.VIEW
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,
-                    NumPhone = mtbNumPhone.Text,
+                    PhoneNumber = mtbNumPhone.Text,
                     Email = txtEmail.Text,
-                    Salario = float.Parse(txtSalario.Text),
+                    Wage = float.Parse(txtSalario.Text),
                     // = cbCargo.Text,
                     Password = txtSenha.Text,
-                    Logradouro = txtLog.Text,
-                    HomeNum = int.Parse(txtHomeNum.Text),
-                    Bairro = txtBairro.Text,
+                    Street = txtLog.Text,
+                    HomeNumber = int.Parse(txtHomeNum.Text),
+                    Neighbordhood = txtBairro.Text,
                     CEP = mtbCEP.Text,
                     City = txtCity.Text,
-                    Complemento = txtComp.Text,
+                    Complement = txtComp.Text,
                     //Img = pbImg.
 
                 };
@@ -98,16 +98,16 @@ namespace SistemaHolerite.VIEW
                 {
                     Name = txtName.Text,
                     CPF = mtbCPF.Text,
-                    NumPhone = mtbNumPhone.Text,
+                    PhoneNumber = mtbNumPhone.Text,
                     Email = txtEmail.Text,
-                    Salario = float.Parse(txtSalario.Text),
+                    Wage = float.Parse(txtSalario.Text),
                     //Permicoes = ,
-                    Logradouro = txtLog.Text,
-                    HomeNum = int.Parse(txtHomeNum.Text),
-                    Bairro = txtBairro.Text,
+                    Street = txtLog.Text,
+                    HomeNumber = int.Parse(txtHomeNum.Text),
+                    Neighbordhood = txtBairro.Text,
                     CEP = mtbCEP.Text,
                     City = txtCity.Text,
-                    Complemento = txtComp.Text,
+                    Complement = txtComp.Text,
                     //Img = pbImg.
 
                 };

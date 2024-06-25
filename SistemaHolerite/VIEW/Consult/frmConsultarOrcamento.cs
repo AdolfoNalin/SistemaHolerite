@@ -52,7 +52,7 @@ namespace SistemaHolerite.VIEW
         }
         #endregion
 
-        #region
+        #region btnPesquisar
         /// <summary>
         /// Busca por nome BTN pesquisar
         /// </summary>
@@ -65,7 +65,7 @@ namespace SistemaHolerite.VIEW
                 string name = txtPesquisar.Text;
                 if (!string.IsNullOrEmpty(name))
                 {
-                    dgOrcamento.DataSource = BudgetDAO.Buscar(name);
+                    dgOrcamento.DataSource = BudgetDAO.SearchName(name);
                 }
                 else
                 {

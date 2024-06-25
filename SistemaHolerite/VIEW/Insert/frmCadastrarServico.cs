@@ -38,12 +38,12 @@ namespace SistemaHolerite.VIEW
         {
             Severce ser = new Severce()
             {
-                DR = txtDR.Text,
-                DC = txtDC.Text,
-                IdRes = cbRes.TabIndex,
-                PV = float.Parse(txtPV.Text),
-                PP = float.Parse(txtPP.Text),
-                Obs = txtObs.Text
+                BriefDescription = txtDR.Text,
+                FullDescription = txtDC.Text,
+                Cod = cbRes.TabIndex,
+                CashPrice = float.Parse(txtPV.Text),
+                TermPrice = float.Parse(txtPP.Text),
+                Observation = txtObs.Text
             };
 
             SeverceDAO.Insert(ser);
@@ -73,12 +73,12 @@ namespace SistemaHolerite.VIEW
         {
             Severce ser = new Severce()
             {
-                DR = txtDR.Text,
-                DC = txtDC.Text,
-                IdRes = cbRes.TabIndex,
-                PV = float.Parse(txtPV.Text),
-                PP = float.Parse(txtPP.Text),
-                Obs = txtObs.Text
+                BriefDescription = txtDR.Text,
+                FullDescription = txtDC.Text,
+                Cod = cbRes.TabIndex,
+                CashPrice = float.Parse(txtPV.Text),
+                TermPrice = float.Parse(txtPP.Text),
+                Observation = txtObs.Text
             };
 
             SeverceDAO.UpDate(ser);

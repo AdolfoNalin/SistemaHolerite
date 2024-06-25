@@ -77,9 +77,9 @@ namespace SistemaHolerite.VIEW
                 int id = int.Parse(txtId.Text);
                 Severce obj = SeverceDAO.Buscar(id);
 
-                txtDR.Text = obj.DR;
-                txtVV.Text = obj.PV.ToString();
-                txtVP.Text = obj.PP.ToString();
+                txtDR.Text = obj.BriefDescription;
+                txtVV.Text = obj.CashPrice.ToString();
+                txtVP.Text = obj.TermPrice.ToString();
             }
         }
         #endregion
