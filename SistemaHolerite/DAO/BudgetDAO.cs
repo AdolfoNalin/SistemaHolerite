@@ -149,14 +149,80 @@ namespace SistemaHolerite.DAO
         }
         #endregion
 
-        #region ConsultDate
+        #region ConsultName
         /// <summary>
-        /// Consulta os dados do orçamento baseado na data inicio e na data fim
+        /// Consulta os dados do banco de dados
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
         /// <returns></returns>
-        public static DataTable Consult(DateTime startDate, DateTime endDate)
+        public static DataTable Consult(string name)
+        {
+            try
+            {
+                new BudgetDAO();
+                DataTable dt = new DataTable();
+
+                string sql = "SELECT * FROM budget WHERE name Like @name";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@name", name);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, _connection);
+                _connection.Open();
+                da.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                return null;
+            }
+            finally { _connection.Close(); }
+        }
+        #endregion
+
+        #region SearchName
+        /// <summary>
+        /// Busca os dados do banco de dados
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable SearchName(string name)
+        {
+            try
+            {
+                new BudgetDAO();
+                DataTable dt = new DataTable();
+
+                string sql = "SELECT * FROM budget WHERE name = @name";
+
+                MySqlCommand cmd = new MySqlCommand(sql, _connection);
+                cmd.Parameters.AddWithValue("@name", name);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, _connection);
+                _connection.Open();
+                da.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Aconteceu um erro do tipo {ex.Message} com o caminho {ex.StackTrace}");
+                return null;
+            }
+            finally { _connection.Close(); }
+        }
+        #endregion
+
+        #region SwarchDate
+        /// <summary>
+        /// Busca os dados do orçamento baseado na data inicio e na data fim
+        /// </summary>
+        /// <param name="startDate">Data inicio</param>
+        /// <param name="endDate">Data Fim</param>
+        /// <returns></returns>
+        public static DataTable GetSeachDate(DateTime startDate, DateTime endDate)
         {
             try
             {
@@ -216,7 +282,7 @@ namespace SistemaHolerite.DAO
 
                 if (dr.Read())
                 {
-                    id = Convert.ToInt32("id");
+                    id = Convert.ToInt32("cod");
                 }
                 else
                 {
