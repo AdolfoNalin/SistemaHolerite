@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaHolerite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eb4b7db86c6fedc6b2151e0eb7c07325d91065c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+918dbafa1e7fc37878308a278a223fe31a733d9a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaHolerite")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaHolerite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
