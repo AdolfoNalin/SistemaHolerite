@@ -214,7 +214,7 @@ namespace SistemaHolerite.DAO
         /// <summary>
         /// Busca o ponto do funcionário pelo nome
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Nome do Funcionário</param>
         /// <returns></returns>
         public static DataTable GetSearchName(string name)
         {
@@ -223,13 +223,13 @@ namespace SistemaHolerite.DAO
             {
                 new PointDAO();
 
-                string sql = @"LECT i.date_point as 'Data',
+                string sql = @"SELECT i.date_holerite as 'Data',
                 u.emp_name as 'Nome Funcionário',
                 u.emp_function as 'Função'
-                FROM point as p 
+                FROM holerite as p 
                 JOIN user_employee as u on (p.cod_emp = u.cod)
                 JOIN company as c on (p.cod_company = c.cod)
-                JOIN item_point as i on (p.cod = i.cod_point) 
+                JOIN item_holerite as i on (p.cod = i.cod_point) 
                 WHERE u.emp_name = @name";
 
                 MySqlCommand cmd = new MySqlCommand(sql,_connection);

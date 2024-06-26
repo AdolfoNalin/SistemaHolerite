@@ -8,8 +8,8 @@ namespace SistemaHolerite.MODEL
 {
     public class Point
     {
-        public int Cod { get; set; }
-        public int CodEmp{ get; set; }
+        public int Cod{ get; set; }
         public int CodCom{ get; set; }
+        public int CodEmp{ get; set; }
     }
 }
